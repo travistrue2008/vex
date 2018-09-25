@@ -225,7 +225,6 @@ impl Vec2 {
     /// assert_eq!(actual, expected);
     /// ```
     pub fn normalize(&mut self) -> f32 {
-        // TODO: use Result<T, E> here
         let length = self.magnitude();
         if length > EPSILON {
             self.x /= length;
