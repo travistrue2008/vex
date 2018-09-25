@@ -1,0 +1,8 @@
+[package]
+name = "vex"
+version = "0.1.0"
+authors = ["Travis J True <travis@truesoftent.com>"]
+description = "Linear math library"
+license = "MIT"
+
+[dependencies]
