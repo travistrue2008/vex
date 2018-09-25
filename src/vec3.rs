@@ -48,6 +48,57 @@ impl Vec3 {
         }
     }
 
+    /// Creates a new right-pointing vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = Vec3::right();
+    /// let expected = Vec3 { x: 1.0, y: 0.0, z: 0.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    pub fn right() -> Vec3 {
+        Vec3 {
+            x: 1.0,
+            y: 0.0,
+            z: 0.0,
+        }
+    }
+
+    /// Creates a new right-pointing vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = Vec3::up();
+    /// let expected = Vec3 { x: 0.0, y: 1.0, z: 0.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    pub fn up() -> Vec3 {
+        Vec3 {
+            x: 0.0,
+            y: 1.0,
+            z: 0.0,
+        }
+    }
+
+    /// Creates a new right-pointing vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = Vec3::forward();
+    /// let expected = Vec3 { x: 0.0, y: 0.0, z: -1.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    pub fn forward() -> Vec3 {
+        Vec3 {
+            x: 0.0,
+            y: 0.0,
+            z: -1.0,
+        }
+    }
+
     /// Creates a new vector from the provided values
     ///
     /// # Examples
