@@ -1,8 +1,9 @@
 [package]
 name = "vex"
 version = "0.1.2"
+license = "MIT"
+repository = "https://github.com/travistrue2008/vex"
 authors = ["Travis J True <travis@truesoftent.com>"]
 description = "3D math library"
-license = "MIT"
 
 [dependencies]
