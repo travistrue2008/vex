@@ -10,26 +10,38 @@ pub struct Vec2 {
     pub y: f32,
 }
 
-pub const ZERO: Vec2 = Vec2 { x: 0.0, y: 0.0 };
-
 impl Vec2 {
     /// Creates a new vector <0.0, 0.0>
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let actual = Vec2::new();
-    /// assert_eq!(actual, ZERO);
+    /// let expected = Vec2 { x: 0.0, y: 0.0 };
+    /// assert_eq!(actual, expected);
     /// ```
     pub fn new() -> Vec2 {
         Vec2 { x: 0.0, y: 0.0 }
+    }
+
+    /// Creates a new vector <1.0, 1.0>
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec2;
+    /// let actual = Vec2::one();
+    /// let expected = Vec2 { x: 1.0, y: 1.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    pub fn one() -> Vec2 {
+        Vec2 { x: 1.0, y: 1.0 }
     }
 
     /// Creates a new vector from the provided values
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let actual = Vec2::from(1.0, 2.0);
     /// let expected = Vec2 { x: 1.0, y: 2.0 };
     /// assert_eq!(actual, expected);
@@ -42,7 +54,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let a = Vec2::from(1.0, 0.0);
     /// let b = Vec2::from(0.0, 1.0);
     /// let actual = Vec2::dot(&a, &b);
@@ -57,7 +69,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let a = Vec2::from(1.0, 0.0);
     /// let b = Vec2::from(0.0, 1.0);
     /// let actual = Vec2::cross(&a, &b);
@@ -72,7 +84,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let s = 1.0;
     /// let v = Vec2::from(1.0, 0.0);
     /// let actual = Vec2::cross_scalar_vec(s, &v);
@@ -87,7 +99,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let s = 1.0;
     /// let v = Vec2::from(1.0, 0.0);
     /// let actual = Vec2::cross_vec_scalar(&v, s);
@@ -102,7 +114,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let a = Vec2::from(1.0, 4.0);
     /// let b = Vec2::from(2.0, 3.0);
     /// let actual = Vec2::min(&a, &b);
@@ -117,7 +129,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let a = Vec2::from(1.0, 4.0);
     /// let b = Vec2::from(2.0, 3.0);
     /// let actual = Vec2::max(&a, &b);
@@ -132,7 +144,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let a = Vec2::from(1.0, 3.0);
     /// let b = Vec2::from(2.0, 4.0);
     /// let mut actual = Vec2::from(0.0, 5.0);
@@ -151,7 +163,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let mut actual = Vec2::new();
     /// actual.set(1.0, 2.0);
     /// let expected = Vec2::from(1.0, 2.0);
@@ -166,10 +178,10 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let mut actual = Vec2::from(1.0, 2.0);
     //  actual.zero();
-    //  assert_eq!(actual, ZERO);
+    //  assert_eq!(actual, Vec2::new());
     /// ```
     pub fn zero(&mut self) {
         self.x = 0.0;
@@ -180,7 +192,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let actual = Vec2::from(1.0, 2.0).magnitude();
     /// let expected = 2.2360679775;
     /// assert_eq!(actual, expected);
@@ -193,7 +205,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let actual = Vec2::from(1.0, 2.0).magnitude_squared();
     /// let expected = 5.0;
     /// assert_eq!(actual, expected);
@@ -206,7 +218,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let mut actual = Vec2::from(1.0, 2.0);
     /// actual.normalize();
     /// let expected = Vec2::from(0.4472135955, 0.894427191);
@@ -228,7 +240,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let mut actual = Vec2::from(-1.0, -2.0);
     /// actual.abs();
     /// let expected = Vec2::from(1.0, 2.0);
@@ -243,7 +255,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let mut actual = Vec2::from(1.0, 2.0);
     /// actual.skew();
     /// let expected = Vec2::from(-2.0, 1.0);
@@ -259,7 +271,7 @@ impl Vec2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::vec2::*;
+    /// use vex::Vec2;
     /// let actual = Vec2::from(1.0, 2.0);
     /// assert!(actual.is_valid());
     /// ```
@@ -288,7 +300,7 @@ impl fmt::Display for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut v = Vec2::from(1.0, 2.0);
 /// assert_eq!(v[0], 1.0);
 /// assert_eq!(v[1], 2.0);
@@ -309,7 +321,7 @@ impl ops::Index<u32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut v = Vec2::new();
 /// v[0] = 3.0;
 /// v[1] = 4.0;
@@ -330,7 +342,7 @@ impl ops::IndexMut<u32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let actual = -Vec2::from(1.0, 2.0);
 /// let expected = Vec2::from(-1.0, -2.0);
 /// assert_eq!(actual, expected);
@@ -347,7 +359,7 @@ impl ops::Neg for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let actual = Vec2::from(1.0, 2.0) + 1.0;
 /// let expected = Vec2::from(2.0, 3.0);
 /// assert_eq!(actual, expected);
@@ -364,7 +376,7 @@ impl ops::Add<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let a = Vec2::from(1.0, 2.0);
 /// let b = Vec2::from(3.0, 4.0);
 /// let actual = a + b;
@@ -383,7 +395,7 @@ impl ops::Add<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual += 10.0;
 /// let expected = Vec2::from(11.0, 12.0);
@@ -400,7 +412,7 @@ impl ops::AddAssign<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual += Vec2::from(1.0, 2.0);
 /// let expected = Vec2::from(2.0, 4.0);
@@ -417,7 +429,7 @@ impl ops::AddAssign<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let actual = Vec2::from(1.0, 2.0) - 10.0;
 /// let expected = Vec2::from(-9.0, -8.0);
 /// assert_eq!(actual, expected);
@@ -434,7 +446,7 @@ impl ops::Sub<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let a = Vec2::from(1.0, 2.0);
 /// let b = Vec2::from(4.0, 3.0);
 /// let actual = a - b;
@@ -453,7 +465,7 @@ impl ops::Sub<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual -= 1.0;
 /// let expected = Vec2::from(0.0, 1.0);
@@ -470,10 +482,10 @@ impl ops::SubAssign<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual -= Vec2::from(1.0, 2.0);
-/// assert_eq!(actual, ZERO);
+/// assert_eq!(actual, Vec2::new());
 /// ```
 impl ops::SubAssign<Vec2> for Vec2 {
     fn sub_assign(&mut self, _rhs: Vec2) {
@@ -486,7 +498,7 @@ impl ops::SubAssign<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let actual = Vec2::from(1.0, 2.0) * 2.0;
 /// let expected = Vec2::from(2.0, 4.0);
 /// assert_eq!(actual, expected);
@@ -503,7 +515,7 @@ impl ops::Mul<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let a = Vec2::from(1.0, 2.0);
 /// let b = Vec2::from(2.0, 3.0);
 /// let actual = a * b;
@@ -522,7 +534,7 @@ impl ops::Mul<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual *= 2.0;
 /// let expected = Vec2::from(2.0, 4.0);
@@ -539,7 +551,7 @@ impl ops::MulAssign<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual *= Vec2::from(2.0, 3.0);
 /// let expected = Vec2::from(2.0, 6.0);
@@ -556,7 +568,7 @@ impl ops::MulAssign<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let actual = Vec2::from(1.0, 2.0) / 2.0;
 /// let expected = Vec2::from(0.5, 1.0);
 /// assert_eq!(actual, expected);
@@ -573,7 +585,7 @@ impl ops::Div<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let a = Vec2::from(1.0, 2.0);
 /// let b = Vec2::from(2.0, 8.0);
 /// let actual = a / b;
@@ -592,7 +604,7 @@ impl ops::Div<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual /= 2.0;
 /// let expected = Vec2::from(0.5, 1.0);
@@ -609,7 +621,7 @@ impl ops::DivAssign<f32> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
+/// use vex::Vec2;
 /// let mut actual = Vec2::from(1.0, 2.0);
 /// actual /= Vec2::from(2.0, 8.0);
 /// let expected = Vec2::from(0.5, 0.25);
@@ -626,8 +638,8 @@ impl ops::DivAssign<Vec2> for Vec2 {
 ///
 /// # Examples
 /// ```
-/// use vex::vec2::*;
-/// assert!(Vec2::new() == ZERO);
+/// use vex::Vec2;
+/// assert!(Vec2::new() == Vec2::new());
 /// ```
 impl cmp::PartialEq for Vec2 {
     fn eq(&self, _rhs: &Vec2) -> bool {
