@@ -1,5 +1,6 @@
 use super::math;
 use super::vec2::Vec2;
+use super::vec4::Vec4;
 use std::cmp;
 use std::f32::EPSILON;
 use std::fmt;
@@ -60,7 +61,7 @@ impl Vec3 {
         Vec3 { x, y, z }
     }
 
-    /// Creates a new Vec2 from the components of a Vec3
+    /// Creates a new Vec3 from the components of a Vec2
     ///
     /// # Examples
     /// ```
@@ -76,6 +77,25 @@ impl Vec3 {
             x: input.x,
             y: input.y,
             z: 0.0,
+        }
+    }
+
+    /// Creates a new Vec3 from the components of a Vec4
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// use vex::Vec4;
+    /// let input = Vec4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Vec3::from_vec4(&input);
+    /// let expected = Vec3 { x: 1.0, y: 2.0, z: 3.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    pub fn from_vec4(input: &Vec4) -> Vec3 {
+        Vec3 {
+            x: input.x,
+            y: input.y,
+            z: input.z,
         }
     }
 
