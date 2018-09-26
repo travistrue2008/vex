@@ -2,6 +2,7 @@ use super::math;
 use super::vec2::Vec2;
 use super::vec4::Vec4;
 use std::cmp;
+use std::convert::From;
 use std::f32::EPSILON;
 use std::fmt;
 use std::ops;
@@ -110,44 +111,6 @@ impl Vec3 {
     /// ```
     pub fn construct(x: f32, y: f32, z: f32) -> Vec3 {
         Vec3 { x, y, z }
-    }
-
-    /// Creates a new Vec3 from the components of a Vec2
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Vec2;
-    /// use vex::Vec3;
-    /// let input = Vec2::construct(1.0, 2.0);
-    /// let actual = Vec3::from_vec2(&input);
-    /// let expected = Vec3 { x: 1.0, y: 2.0, z: 0.0 };
-    /// assert_eq!(actual, expected);
-    /// ```
-    pub fn from_vec2(input: &Vec2) -> Vec3 {
-        Vec3 {
-            x: input.x,
-            y: input.y,
-            z: 0.0,
-        }
-    }
-
-    /// Creates a new Vec3 from the components of a Vec4
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Vec3;
-    /// use vex::Vec4;
-    /// let input = Vec4::construct(1.0, 2.0, 3.0, 4.0);
-    /// let actual = Vec3::from_vec4(&input);
-    /// let expected = Vec3 { x: 1.0, y: 2.0, z: 3.0 };
-    /// assert_eq!(actual, expected);
-    /// ```
-    pub fn from_vec4(input: &Vec4) -> Vec3 {
-        Vec3 {
-            x: input.x,
-            y: input.y,
-            z: input.z,
-        }
     }
 
     /// Find the dot product between two vectors
@@ -340,6 +303,48 @@ impl Vec3 {
 
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "<{}, {}, {}>", self.x, self.y, self.z)
+    }
+}
+
+/// Creates a new Vec3 from the components of a Vec2
+///
+/// # Examples
+/// ```
+/// use vex::Vec2;
+/// use vex::Vec3;
+/// let input = Vec2::construct(1.0, 2.0);
+/// let actual = Vec3::from(input);
+/// let expected = Vec3 { x: 1.0, y: 2.0, z: 0.0 };
+/// assert_eq!(actual, expected);
+/// ```
+impl From<Vec2> for Vec3 {
+    fn from(item: Vec2) -> Vec3 {
+        Vec3 {
+            x: item.x,
+            y: item.y,
+            z: 0.0,
+        }
+    }
+}
+
+/// Creates a new Vec3 from the components of a Vec4
+///
+/// # Examples
+/// ```
+/// use vex::Vec3;
+/// use vex::Vec4;
+/// let input = Vec4::construct(1.0, 2.0, 3.0, 4.0);
+/// let actual = Vec3::from(input);
+/// let expected = Vec3 { x: 1.0, y: 2.0, z: 3.0 };
+/// assert_eq!(actual, expected);
+/// ```
+impl From<Vec4> for Vec3 {
+    fn from(item: Vec4) -> Vec3 {
+        Vec3 {
+            x: item.x,
+            y: item.y,
+            z: item.z,
+        }
     }
 }
 

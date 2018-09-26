@@ -1,6 +1,7 @@
 use super::math;
 use super::vec3::Vec3;
 use std::cmp;
+use std::convert::From;
 use std::f32::EPSILON;
 use std::fmt;
 use std::ops;
@@ -49,24 +50,6 @@ impl Vec2 {
     /// ```
     pub fn construct(x: f32, y: f32) -> Vec2 {
         Vec2 { x, y }
-    }
-
-    /// Creates a new Vec2 from the components of a Vec3
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Vec2;
-    /// use vex::Vec3;
-    /// let input = Vec3::construct(1.0, 2.0, 3.0);
-    /// let actual = Vec2::from(&input);
-    /// let expected = Vec2 { x: 1.0, y: 2.0 };
-    /// assert_eq!(actual, expected);
-    /// ```
-    pub fn from(input: &Vec3) -> Vec2 {
-        Vec2 {
-            x: input.x,
-            y: input.y,
-        }
     }
 
     /// Find the dot product between two vectors
@@ -298,6 +281,26 @@ impl Vec2 {
 
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "<{}, {}>", self.x, self.y)
+    }
+}
+
+/// Creates a new Vec2 from the components of a Vec3
+///
+/// # Examples
+/// ```
+/// use vex::Vec2;
+/// use vex::Vec3;
+/// let input = Vec3::construct(1.0, 2.0, 3.0);
+/// let actual = Vec2::from(input);
+/// let expected = Vec2 { x: 1.0, y: 2.0 };
+/// assert_eq!(actual, expected);
+/// ```
+impl From<Vec3> for Vec2 {
+    fn from(item: Vec3) -> Self {
+        Vec2 {
+            x: item.x,
+            y: item.y,
+        }
     }
 }
 
