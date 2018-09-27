@@ -647,7 +647,7 @@ impl ops::DivAssign<Vec4> for Vec4 {
     }
 }
 
-/// Determines if two vectors components are equivalent
+/// Determines if two vectors' components are equivalent
 ///
 /// # Examples
 /// ```
