@@ -13,7 +13,7 @@ pub struct Vec2 {
 }
 
 impl Vec2 {
-    /// Creates a new vector <0.0, 0.0>
+    /// Creates a vector <0.0, 0.0>
     ///
     /// # Examples
     /// ```
@@ -26,7 +26,7 @@ impl Vec2 {
         Vec2 { x: 0.0, y: 0.0 }
     }
 
-    /// Creates a new vector <1.0, 1.0>
+    /// Creates a vector <1.0, 1.0>
     ///
     /// # Examples
     /// ```
@@ -39,7 +39,7 @@ impl Vec2 {
         Vec2 { x: 1.0, y: 1.0 }
     }
 
-    /// Creates a new vector from the provided values
+    /// Creates a vector from the provided values
     ///
     /// # Examples
     /// ```
@@ -285,7 +285,7 @@ impl Vec2 {
 }
 
 impl From<Vec3> for Vec2 {
-    /// Creates a new Vec2 from the components of a Vec3
+    /// Creates a Vec2 from the components of a Vec3
     ///
     /// # Examples
     /// ```

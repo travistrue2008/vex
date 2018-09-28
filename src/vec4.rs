@@ -15,7 +15,7 @@ pub struct Vec4 {
 }
 
 impl Vec4 {
-    /// Creates a new vector <0.0, 0.0, 0.0, 0.0>
+    /// Creates a vector <0.0, 0.0, 0.0, 0.0>
     ///
     /// # Examples
     /// ```
@@ -33,7 +33,7 @@ impl Vec4 {
         }
     }
 
-    /// Creates a new vector <1.0, 1.0, 1.0, 1.0>
+    /// Creates a vector <1.0, 1.0, 1.0, 1.0>
     ///
     /// # Examples
     /// ```
@@ -51,7 +51,7 @@ impl Vec4 {
         }
     }
 
-    /// Creates a new vector from the provided values
+    /// Creates a vector from the provided values
     ///
     /// # Examples
     /// ```
@@ -242,7 +242,7 @@ impl Vec4 {
 }
 
 impl From<Vec3> for Vec4 {
-    /// Creates a new Vec4 from the components of a Vec3
+    /// Creates a Vec4 from the components of a Vec3
     ///
     /// # Examples
     /// ```

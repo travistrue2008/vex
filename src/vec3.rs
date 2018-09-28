@@ -15,7 +15,7 @@ pub struct Vec3 {
 }
 
 impl Vec3 {
-    /// Creates a new vector <0.0, 0.0, 0.0>
+    /// Creates a vector <0.0, 0.0, 0.0>
     ///
     /// # Examples
     /// ```
@@ -32,7 +32,7 @@ impl Vec3 {
         }
     }
 
-    /// Creates a new vector <1.0, 1.0, 1.0>
+    /// Creates a vector <1.0, 1.0, 1.0>
     ///
     /// # Examples
     /// ```
@@ -49,7 +49,7 @@ impl Vec3 {
         }
     }
 
-    /// Creates a new right-pointing vector
+    /// Creates a right-pointing vector
     ///
     /// # Examples
     /// ```
@@ -66,7 +66,7 @@ impl Vec3 {
         }
     }
 
-    /// Creates a new right-pointing vector
+    /// Creates a right-pointing vector
     ///
     /// # Examples
     /// ```
@@ -83,7 +83,7 @@ impl Vec3 {
         }
     }
 
-    /// Creates a new right-pointing vector
+    /// Creates a right-pointing vector
     ///
     /// # Examples
     /// ```
@@ -100,7 +100,7 @@ impl Vec3 {
         }
     }
 
-    /// Creates a new vector from the provided values
+    /// Creates a vector from the provided values
     ///
     /// # Examples
     /// ```
@@ -307,7 +307,7 @@ impl Vec3 {
 }
 
 impl From<Vec2> for Vec3 {
-    /// Creates a new Vec3 from the components of a Vec2
+    /// Creates a Vec3 from the components of a Vec2
     ///
     /// # Examples
     /// ```
@@ -328,7 +328,7 @@ impl From<Vec2> for Vec3 {
 }
 
 impl From<Vec4> for Vec3 {
-    /// Creates a new Vec3 from the components of a Vec4
+    /// Creates a Vec3 from the components of a Vec4
     ///
     /// # Examples
     /// ```

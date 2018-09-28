@@ -69,5 +69,5 @@ pub fn sign(x: f32) -> f32 {
 }
 
 pub trait TransformPoint<T> {
-    fn transform_point(&self, point: T) -> T;
+    fn transform_point(&self, point: &T) -> T;
 }
