@@ -6,6 +6,12 @@ use std::cmp;
 use std::fmt;
 use std::ops;
 
+pub const IDENTITY: Matrix4 = Matrix4 {
+    m: [
+        1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+    ],
+};
+
 #[derive(Copy, Clone)]
 pub struct Matrix4 {
     m: [f32; 16],
@@ -17,16 +23,12 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// use vex::matrix4::IDENTITY;
     /// let actual = Matrix4::new();
-    /// let expected = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual, IDENTITY);
     /// ```
     pub fn new() -> Matrix4 {
-        Matrix4 {
-            m: [
-                1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-            ],
-        }
+        IDENTITY
     }
 
     /// Creates a matrix from the provided values
@@ -1016,22 +1018,13 @@ impl Matrix4 {
     /// assert!(actual.is_valid());
     /// ```
     pub fn is_valid(&self) -> bool {
-        common::is_valid(self.m11())
-            && common::is_valid(self.m21())
-            && common::is_valid(self.m31())
-            && common::is_valid(self.m41())
-            && common::is_valid(self.m12())
-            && common::is_valid(self.m22())
-            && common::is_valid(self.m32())
-            && common::is_valid(self.m42())
-            && common::is_valid(self.m13())
-            && common::is_valid(self.m23())
-            && common::is_valid(self.m33())
-            && common::is_valid(self.m43())
-            && common::is_valid(self.m14())
-            && common::is_valid(self.m24())
-            && common::is_valid(self.m34())
-            && common::is_valid(self.m44())
+        for i in 0..16 {
+            if !common::is_valid(self.m[i]) {
+                return false;
+            }
+        }
+
+        true
     }
 
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -1447,22 +1440,13 @@ impl cmp::PartialEq for Matrix4 {
     /// assert!(Matrix4::new() == Matrix4::new());
     /// ```
     fn eq(&self, _rhs: &Matrix4) -> bool {
-        self.m11() == _rhs.m11()
-            && self.m21() == _rhs.m21()
-            && self.m31() == _rhs.m31()
-            && self.m41() == _rhs.m41()
-            && self.m12() == _rhs.m12()
-            && self.m22() == _rhs.m22()
-            && self.m32() == _rhs.m32()
-            && self.m42() == _rhs.m42()
-            && self.m13() == _rhs.m13()
-            && self.m23() == _rhs.m23()
-            && self.m33() == _rhs.m33()
-            && self.m43() == _rhs.m43()
-            && self.m14() == _rhs.m14()
-            && self.m24() == _rhs.m24()
-            && self.m34() == _rhs.m34()
-            && self.m44() == _rhs.m44()
+        for (i, elem) in self.m.iter().enumerate() {
+            if *elem != _rhs.m[i] {
+                return false;
+            }
+        }
+
+        true
     }
 }
 

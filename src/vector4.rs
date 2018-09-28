@@ -39,12 +39,7 @@ impl Vector4 {
     /// assert_eq!(actual, expected);
     /// ```
     pub fn new() -> Vector4 {
-        Vector4 {
-            x: 0.0,
-            y: 0.0,
-            z: 0.0,
-            w: 0.0,
-        }
+        ZERO
     }
 
     /// Creates a vector from the provided values
@@ -216,7 +211,13 @@ impl Vector4 {
     /// assert!(actual.is_valid());
     /// ```
     pub fn is_valid(&self) -> bool {
-        common::is_valid(self.x) && common::is_valid(self.y) && common::is_valid(self.z)
+        for i in 0..4 {
+            if !common::is_valid(self[i]) {
+                return false;
+            }
+        }
+
+        true
     }
 
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {

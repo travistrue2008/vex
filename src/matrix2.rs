@@ -4,6 +4,10 @@ use std::cmp;
 use std::fmt;
 use std::ops;
 
+pub const IDENTITY: Matrix2 = Matrix2 {
+    m: [1.0, 0.0, 0.0, 1.0],
+};
+
 #[derive(Copy, Clone)]
 pub struct Matrix2 {
     m: [f32; 4],
@@ -15,14 +19,12 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
+    /// use vex::matrix2::IDENTITY;
     /// let actual = Matrix2::new();
-    /// let expected = [1.0, 0.0, 0.0, 1.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual, IDENTITY);
     /// ```
     pub fn new() -> Matrix2 {
-        Matrix2 {
-            m: [1.0, 0.0, 0.0, 1.0],
-        }
+        IDENTITY
     }
 
     /// Creates a matrix from the provided values
@@ -240,10 +242,13 @@ impl Matrix2 {
     /// assert!(actual.is_valid());
     /// ```
     pub fn is_valid(&self) -> bool {
-        common::is_valid(self.m11())
-            && common::is_valid(self.m21())
-            && common::is_valid(self.m12())
-            && common::is_valid(self.m22())
+        for i in 0..4 {
+            if !common::is_valid(self.m[i]) {
+                return false;
+            }
+        }
+
+        true
     }
 
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -573,10 +578,13 @@ impl cmp::PartialEq for Matrix2 {
     /// assert!(Matrix2::new() == Matrix2::new());
     /// ```
     fn eq(&self, _rhs: &Matrix2) -> bool {
-        self.m11() == _rhs.m11()
-            && self.m21() == _rhs.m21()
-            && self.m12() == _rhs.m12()
-            && self.m22() == _rhs.m22()
+        for (i, elem) in self.m.iter().enumerate() {
+            if *elem != _rhs.m[i] {
+                return false;
+            }
+        }
+
+        true
     }
 }
 

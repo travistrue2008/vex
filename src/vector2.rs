@@ -253,7 +253,13 @@ impl Vector2 {
     /// assert!(actual.is_valid());
     /// ```
     pub fn is_valid(&self) -> bool {
-        common::is_valid(self.x) && common::is_valid(self.y)
+        for i in 0..2 {
+            if !common::is_valid(self[i]) {
+                return false;
+            }
+        }
+
+        true
     }
 
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
