@@ -306,18 +306,18 @@ impl Vec3 {
     }
 }
 
-/// Creates a new Vec3 from the components of a Vec2
-///
-/// # Examples
-/// ```
-/// use vex::Vec2;
-/// use vex::Vec3;
-/// let input = Vec2::construct(1.0, 2.0);
-/// let actual = Vec3::from(input);
-/// let expected = Vec3 { x: 1.0, y: 2.0, z: 0.0 };
-/// assert_eq!(actual, expected);
-/// ```
 impl From<Vec2> for Vec3 {
+    /// Creates a new Vec3 from the components of a Vec2
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec2;
+    /// use vex::Vec3;
+    /// let input = Vec2::construct(1.0, 2.0);
+    /// let actual = Vec3::from(input);
+    /// let expected = Vec3 { x: 1.0, y: 2.0, z: 0.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
     fn from(item: Vec2) -> Vec3 {
         Vec3 {
             x: item.x,
@@ -327,18 +327,18 @@ impl From<Vec2> for Vec3 {
     }
 }
 
-/// Creates a new Vec3 from the components of a Vec4
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// use vex::Vec4;
-/// let input = Vec4::construct(1.0, 2.0, 3.0, 4.0);
-/// let actual = Vec3::from(input);
-/// let expected = Vec3 { x: 1.0, y: 2.0, z: 3.0 };
-/// assert_eq!(actual, expected);
-/// ```
 impl From<Vec4> for Vec3 {
+    /// Creates a new Vec3 from the components of a Vec4
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// use vex::Vec4;
+    /// let input = Vec4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Vec3::from(input);
+    /// let expected = Vec3 { x: 1.0, y: 2.0, z: 3.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
     fn from(item: Vec4) -> Vec3 {
         Vec3 {
             x: item.x,
@@ -348,19 +348,19 @@ impl From<Vec4> for Vec3 {
     }
 }
 
-/// Looks up a component by index
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut v = Vec3::construct(1.0, 2.0, 3.0);
-/// assert_eq!(v[0], 1.0);
-/// assert_eq!(v[1], 2.0);
-/// assert_eq!(v[2], 3.0);
-/// ```
 impl ops::Index<u32> for Vec3 {
     type Output = f32;
 
+    /// Looks up a component by index
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut v = Vec3::construct(1.0, 2.0, 3.0);
+    /// assert_eq!(v[0], 1.0);
+    /// assert_eq!(v[1], 2.0);
+    /// assert_eq!(v[2], 3.0);
+    /// ```
     fn index(&self, index: u32) -> &f32 {
         match index {
             0 => &self.x,
@@ -371,20 +371,20 @@ impl ops::Index<u32> for Vec3 {
     }
 }
 
-/// Mutate a component by index
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut v = Vec3::new();
-/// v[0] = 4.0;
-/// v[1] = 5.0;
-/// v[2] = 6.0;
-/// assert_eq!(v[0], 4.0);
-/// assert_eq!(v[1], 5.0);
-/// assert_eq!(v[2], 6.0);
-/// ```
 impl ops::IndexMut<u32> for Vec3 {
+    /// Mutate a component by index
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut v = Vec3::new();
+    /// v[0] = 4.0;
+    /// v[1] = 5.0;
+    /// v[2] = 6.0;
+    /// assert_eq!(v[0], 4.0);
+    /// assert_eq!(v[1], 5.0);
+    /// assert_eq!(v[2], 6.0);
+    /// ```
     fn index_mut<'a>(&'a mut self, index: u32) -> &'a mut f32 {
         match index {
             0 => &mut self.x,
@@ -395,70 +395,70 @@ impl ops::IndexMut<u32> for Vec3 {
     }
 }
 
-/// Negates all components in a vector
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let actual = -Vec3::construct(1.0, 2.0, 3.0);
-/// let expected = Vec3::construct(-1.0, -2.0, -3.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Neg for Vec3 {
     type Output = Vec3;
 
+    /// Negates all components in a vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = -Vec3::construct(1.0, 2.0, 3.0);
+    /// let expected = Vec3::construct(-1.0, -2.0, -3.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn neg(self) -> Vec3 {
         Vec3::construct(-self.x, -self.y, -self.z)
     }
 }
 
-/// Find the resulting vector by adding a scalar to a vector's components
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let actual = Vec3::construct(1.0, 2.0, 3.0) + 1.0;
-/// let expected = Vec3::construct(2.0, 3.0, 4.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Add<f32> for Vec3 {
     type Output = Vec3;
 
+    /// Find the resulting vector by adding a scalar to a vector's components
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = Vec3::construct(1.0, 2.0, 3.0) + 1.0;
+    /// let expected = Vec3::construct(2.0, 3.0, 4.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn add(self, _rhs: f32) -> Vec3 {
         Vec3::construct(self.x + _rhs, self.y + _rhs, self.z + _rhs)
     }
 }
 
-/// Add two vectors
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let a = Vec3::construct(1.0, 2.0, 3.0);
-/// let b = Vec3::construct(4.0, 5.0, 6.0);
-/// let actual = a + b;
-/// let expected = Vec3::construct(5.0, 7.0, 9.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Add<Vec3> for Vec3 {
     type Output = Vec3;
 
+    /// Add two vectors
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let a = Vec3::construct(1.0, 2.0, 3.0);
+    /// let b = Vec3::construct(4.0, 5.0, 6.0);
+    /// let actual = a + b;
+    /// let expected = Vec3::construct(5.0, 7.0, 9.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn add(self, _rhs: Vec3) -> Vec3 {
         Vec3::construct(self.x + _rhs.x, self.y + _rhs.y, self.z + _rhs.z)
     }
 }
 
-/// Increment a vector by a scalar
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
-/// actual += 10.0;
-/// let expected = Vec3::construct(11.0, 12.0, 13.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::AddAssign<f32> for Vec3 {
+    /// Increment a vector by a scalar
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
+    /// actual += 10.0;
+    /// let expected = Vec3::construct(11.0, 12.0, 13.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn add_assign(&mut self, _rhs: f32) {
         self.x += _rhs;
         self.y += _rhs;
@@ -466,17 +466,17 @@ impl ops::AddAssign<f32> for Vec3 {
     }
 }
 
-/// Increment a vector by another vector
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
-/// actual += Vec3::construct(1.0, 2.0, 3.0);
-/// let expected = Vec3::construct(2.0, 4.0, 6.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::AddAssign<Vec3> for Vec3 {
+    /// Increment a vector by another vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
+    /// actual += Vec3::construct(1.0, 2.0, 3.0);
+    /// let expected = Vec3::construct(2.0, 4.0, 6.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn add_assign(&mut self, _rhs: Vec3) {
         self.x += _rhs.x;
         self.y += _rhs.y;
@@ -484,53 +484,53 @@ impl ops::AddAssign<Vec3> for Vec3 {
     }
 }
 
-/// Find the resulting vector by subtracting a scalar from a vector's components
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let actual = Vec3::construct(1.0, 2.0, 3.0) - 10.0;
-/// let expected = Vec3::construct(-9.0, -8.0, -7.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Sub<f32> for Vec3 {
     type Output = Vec3;
 
+    /// Find the resulting vector by subtracting a scalar from a vector's components
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = Vec3::construct(1.0, 2.0, 3.0) - 10.0;
+    /// let expected = Vec3::construct(-9.0, -8.0, -7.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn sub(self, _rhs: f32) -> Vec3 {
         Vec3::construct(self.x - _rhs, self.y - _rhs, self.z - _rhs)
     }
 }
 
-/// Subtract two vectors
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let a = Vec3::construct(1.0, 2.0, 3.0);
-/// let b = Vec3::construct(5.0, 4.0, 3.0);
-/// let actual = a - b;
-/// let expected = Vec3::construct(-4.0, -2.0, 0.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Sub<Vec3> for Vec3 {
     type Output = Vec3;
 
+    /// Subtract two vectors
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let a = Vec3::construct(1.0, 2.0, 3.0);
+    /// let b = Vec3::construct(5.0, 4.0, 3.0);
+    /// let actual = a - b;
+    /// let expected = Vec3::construct(-4.0, -2.0, 0.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn sub(self, _rhs: Vec3) -> Vec3 {
         Vec3::construct(self.x - _rhs.x, self.y - _rhs.y, self.z - _rhs.z)
     }
 }
 
-/// Decrement a vector by a scalar
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
-/// actual -= 1.0;
-/// let expected = Vec3::construct(0.0, 1.0, 2.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::SubAssign<f32> for Vec3 {
+    /// Decrement a vector by a scalar
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
+    /// actual -= 1.0;
+    /// let expected = Vec3::construct(0.0, 1.0, 2.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn sub_assign(&mut self, _rhs: f32) {
         self.x -= _rhs;
         self.y -= _rhs;
@@ -538,16 +538,16 @@ impl ops::SubAssign<f32> for Vec3 {
     }
 }
 
-/// Decrement a vector by another vector
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
-/// actual -= Vec3::construct(1.0, 2.0, 3.0);
-/// assert_eq!(actual, Vec3::new());
-/// ```
 impl ops::SubAssign<Vec3> for Vec3 {
+    /// Decrement a vector by another vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
+    /// actual -= Vec3::construct(1.0, 2.0, 3.0);
+    /// assert_eq!(actual, Vec3::new());
+    /// ```
     fn sub_assign(&mut self, _rhs: Vec3) {
         self.x -= _rhs.x;
         self.y -= _rhs.y;
@@ -555,53 +555,53 @@ impl ops::SubAssign<Vec3> for Vec3 {
     }
 }
 
-/// Find the resulting vector by multiplying a scalar to a vector's components
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let actual = Vec3::construct(1.0, 2.0, 3.0) * 2.0;
-/// let expected = Vec3::construct(2.0, 4.0, 6.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Mul<f32> for Vec3 {
     type Output = Vec3;
 
+    /// Find the resulting vector by multiplying a scalar to a vector's components
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = Vec3::construct(1.0, 2.0, 3.0) * 2.0;
+    /// let expected = Vec3::construct(2.0, 4.0, 6.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn mul(self, _rhs: f32) -> Vec3 {
         Vec3::construct(self.x * _rhs, self.y * _rhs, self.z * _rhs)
     }
 }
 
-/// Multiply two vectors
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let a = Vec3::construct(1.0, 2.0, 3.0);
-/// let b = Vec3::construct(3.0, 4.0, 5.0);
-/// let actual = a * b;
-/// let expected = Vec3::construct(3.0, 8.0, 15.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Mul<Vec3> for Vec3 {
     type Output = Vec3;
 
+    /// Multiply two vectors
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let a = Vec3::construct(1.0, 2.0, 3.0);
+    /// let b = Vec3::construct(3.0, 4.0, 5.0);
+    /// let actual = a * b;
+    /// let expected = Vec3::construct(3.0, 8.0, 15.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn mul(self, _rhs: Vec3) -> Vec3 {
         Vec3::construct(self.x * _rhs.x, self.y * _rhs.y, self.z * _rhs.z)
     }
 }
 
-/// Multiply a vector by a scalar
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
-/// actual *= 2.0;
-/// let expected = Vec3::construct(2.0, 4.0, 6.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::MulAssign<f32> for Vec3 {
+    /// Multiply a vector by a scalar
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
+    /// actual *= 2.0;
+    /// let expected = Vec3::construct(2.0, 4.0, 6.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn mul_assign(&mut self, _rhs: f32) {
         self.x *= _rhs;
         self.y *= _rhs;
@@ -609,17 +609,17 @@ impl ops::MulAssign<f32> for Vec3 {
     }
 }
 
-/// Multiply a vector by another vector
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
-/// actual *= Vec3::construct(2.0, 3.0, 6.0);
-/// let expected = Vec3::construct(2.0, 6.0, 18.0);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::MulAssign<Vec3> for Vec3 {
+    /// Multiply a vector by another vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
+    /// actual *= Vec3::construct(2.0, 3.0, 6.0);
+    /// let expected = Vec3::construct(2.0, 6.0, 18.0);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn mul_assign(&mut self, _rhs: Vec3) {
         self.x *= _rhs.x;
         self.y *= _rhs.y;
@@ -627,53 +627,53 @@ impl ops::MulAssign<Vec3> for Vec3 {
     }
 }
 
-/// Find the resulting vector by dividing a scalar to a vector's components
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let actual = Vec3::construct(1.0, 2.0, 3.0) / 2.0;
-/// let expected = Vec3::construct(0.5, 1.0, 1.5);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Div<f32> for Vec3 {
     type Output = Vec3;
 
+    /// Find the resulting vector by dividing a scalar to a vector's components
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let actual = Vec3::construct(1.0, 2.0, 3.0) / 2.0;
+    /// let expected = Vec3::construct(0.5, 1.0, 1.5);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn div(self, _rhs: f32) -> Vec3 {
         Vec3::construct(self.x / _rhs, self.y / _rhs, self.z / _rhs)
     }
 }
 
-/// Divide two vectors
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let a = Vec3::construct(1.0, 2.0, 4.0);
-/// let b = Vec3::construct(2.0, 8.0, 32.0);
-/// let actual = a / b;
-/// let expected = Vec3::construct(0.5, 0.25, 0.125);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::Div<Vec3> for Vec3 {
     type Output = Vec3;
 
+    /// Divide two vectors
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let a = Vec3::construct(1.0, 2.0, 4.0);
+    /// let b = Vec3::construct(2.0, 8.0, 32.0);
+    /// let actual = a / b;
+    /// let expected = Vec3::construct(0.5, 0.25, 0.125);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn div(self, _rhs: Vec3) -> Vec3 {
         Vec3::construct(self.x / _rhs.x, self.y / _rhs.y, self.z / _rhs.z)
     }
 }
 
-/// Divide a vector by a scalar
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
-/// actual /= 2.0;
-/// let expected = Vec3::construct(0.5, 1.0, 1.5);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::DivAssign<f32> for Vec3 {
+    /// Divide a vector by a scalar
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 3.0);
+    /// actual /= 2.0;
+    /// let expected = Vec3::construct(0.5, 1.0, 1.5);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn div_assign(&mut self, _rhs: f32) {
         self.x /= _rhs;
         self.y /= _rhs;
@@ -681,17 +681,17 @@ impl ops::DivAssign<f32> for Vec3 {
     }
 }
 
-/// Divide a vector by another vector
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// let mut actual = Vec3::construct(1.0, 2.0, 4.0);
-/// actual /= Vec3::construct(2.0, 8.0, 32.0);
-/// let expected = Vec3::construct(0.5, 0.25, 0.125);
-/// assert_eq!(actual, expected);
-/// ```
 impl ops::DivAssign<Vec3> for Vec3 {
+    /// Divide a vector by another vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// let mut actual = Vec3::construct(1.0, 2.0, 4.0);
+    /// actual /= Vec3::construct(2.0, 8.0, 32.0);
+    /// let expected = Vec3::construct(0.5, 0.25, 0.125);
+    /// assert_eq!(actual, expected);
+    /// ```
     fn div_assign(&mut self, _rhs: Vec3) {
         self.x /= _rhs.x;
         self.y /= _rhs.y;
@@ -699,14 +699,14 @@ impl ops::DivAssign<Vec3> for Vec3 {
     }
 }
 
-/// Determines if two vectors' components are equivalent
-///
-/// # Examples
-/// ```
-/// use vex::Vec3;
-/// assert!(Vec3::new() == Vec3::new());
-/// ```
 impl cmp::PartialEq for Vec3 {
+    /// Determines if two vectors' components are equivalent
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vec3;
+    /// assert!(Vec3::new() == Vec3::new());
+    /// ```
     fn eq(&self, _rhs: &Vec3) -> bool {
         self.x == _rhs.x && self.y == _rhs.y && self.z == _rhs.z
     }
