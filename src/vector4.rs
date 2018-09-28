@@ -6,6 +6,20 @@ use std::f32::EPSILON;
 use std::fmt;
 use std::ops;
 
+pub const ZERO: Vector4 = Vector4 {
+    x: 0.0,
+    y: 0.0,
+    z: 0.0,
+    w: 0.0,
+};
+
+pub const ONE: Vector4 = Vector4 {
+    x: 1.0,
+    y: 1.0,
+    z: 1.0,
+    w: 1.0,
+};
+
 #[derive(Copy, Clone)]
 pub struct Vector4 {
     pub x: f32,
@@ -33,34 +47,16 @@ impl Vector4 {
         }
     }
 
-    /// Creates a vector <1.0, 1.0, 1.0, 1.0>
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Vector4;
-    /// let actual = Vector4::one();
-    /// let expected = Vector4 { x: 1.0, y: 1.0, z: 1.0, w: 1.0 };
-    /// assert_eq!(actual, expected);
-    /// ```
-    pub fn one() -> Vector4 {
-        Vector4 {
-            x: 1.0,
-            y: 1.0,
-            z: 1.0,
-            w: 1.0,
-        }
-    }
-
     /// Creates a vector from the provided values
     ///
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let expected = Vector4 { x: 1.0, y: 2.0, z: 3.0, w: 4.0 };
     /// assert_eq!(actual, expected);
     /// ```
-    pub fn construct(x: f32, y: f32, z: f32, w: f32) -> Vector4 {
+    pub fn make(x: f32, y: f32, z: f32, w: f32) -> Vector4 {
         Vector4 { x, y, z, w }
     }
 
@@ -69,8 +65,8 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(1.0, 0.0, 0.0, 0.0);
-    /// let b = Vector4::construct(0.0, 0.0, 1.0, 0.0);
+    /// let a = Vector4::make(1.0, 0.0, 0.0, 0.0);
+    /// let b = Vector4::make(0.0, 0.0, 1.0, 0.0);
     /// let actual = Vector4::dot(&a, &b);
     /// let expected = 0.0;
     /// assert_eq!(actual, expected);
@@ -84,14 +80,14 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(1.0, 4.0, 5.0, 7.0);
-    /// let b = Vector4::construct(2.0, 3.0, 6.0, 8.0);
+    /// let a = Vector4::make(1.0, 4.0, 5.0, 7.0);
+    /// let b = Vector4::make(2.0, 3.0, 6.0, 8.0);
     /// let actual = Vector4::min(&a, &b);
-    /// let expected = Vector4::construct(1.0, 3.0, 5.0, 7.0);
+    /// let expected = Vector4::make(1.0, 3.0, 5.0, 7.0);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn min(a: &Vector4, b: &Vector4) -> Vector4 {
-        Vector4::construct(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w))
+        Vector4::make(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w))
     }
 
     /// Find the maximum (component-wise) vector between two vectors
@@ -99,14 +95,14 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(1.0, 4.0, 5.0, 7.0);
-    /// let b = Vector4::construct(2.0, 3.0, 6.0, 8.0);
+    /// let a = Vector4::make(1.0, 4.0, 5.0, 7.0);
+    /// let b = Vector4::make(2.0, 3.0, 6.0, 8.0);
     /// let actual = Vector4::max(&a, &b);
-    /// let expected = Vector4::construct(2.0, 4.0, 6.0, 8.0);
+    /// let expected = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn max(a: &Vector4, b: &Vector4) -> Vector4 {
-        Vector4::construct(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w))
+        Vector4::make(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w))
     }
 
     /// Find the clamped (component-wise) vector between two vectors
@@ -114,11 +110,11 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(1.0, 3.0, 5.0, 7.0);
-    /// let b = Vector4::construct(2.0, 4.0, 6.0, 8.0);
-    /// let mut actual = Vector4::construct(0.0, 5.0, 10.0, 20.0);
+    /// let a = Vector4::make(1.0, 3.0, 5.0, 7.0);
+    /// let b = Vector4::make(2.0, 4.0, 6.0, 8.0);
+    /// let mut actual = Vector4::make(0.0, 5.0, 10.0, 20.0);
     /// actual.clamp(&a, &b);
-    /// let expected = Vector4::construct(1.0, 4.0, 6.0, 8.0);
+    /// let expected = Vector4::make(1.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn clamp(&mut self, a: &Vector4, b: &Vector4) {
@@ -135,7 +131,7 @@ impl Vector4 {
     /// use vex::Vector4;
     /// let mut actual = Vector4::new();
     /// actual.set(1.0, 2.0, 3.0, 4.0);
-    /// let expected = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let expected = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn set(&mut self, x: f32, y: f32, z: f32, w: f32) {
@@ -145,25 +141,12 @@ impl Vector4 {
         self.w = w;
     }
 
-    /// Set all components of the vector to zero
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    //  actual.zero();
-    //  assert_eq!(actual, Vector4::new());
-    /// ```
-    pub fn zero(&mut self) {
-        self.set(0.0, 0.0, 0.0, 0.0);
-    }
-
     /// Get the magnitude of the vector
     ///
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0).magnitude();
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).magnitude();
     /// let expected = 5.47722557505;
     /// assert_eq!(actual, expected);
     /// ```
@@ -176,7 +159,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0).magnitude_squared();
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).magnitude_squared();
     /// let expected = 30.0;
     /// assert_eq!(actual, expected);
     /// ```
@@ -189,9 +172,9 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual.normalize();
-    /// let expected = Vector4::construct(0.18257418, 0.36514837, 0.5477225, 0.73029673);
+    /// let expected = Vector4::make(0.18257418, 0.36514837, 0.5477225, 0.73029673);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn normalize(&mut self) -> f32 {
@@ -212,9 +195,9 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(-1.0, -2.0, -3.0, -4.0);
+    /// let mut actual = Vector4::make(-1.0, -2.0, -3.0, -4.0);
     /// actual.abs();
-    /// let expected = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let expected = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn abs(&mut self) {
@@ -229,7 +212,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert!(actual.is_valid());
     /// ```
     pub fn is_valid(&self) -> bool {
@@ -248,7 +231,7 @@ impl From<Vector3> for Vector4 {
     /// ```
     /// use vex::Vector3;
     /// use vex::Vector4;
-    /// let input = Vector3::construct(1.0, 2.0, 3.0);
+    /// let input = Vector3::make(1.0, 2.0, 3.0);
     /// let actual = Vector4::from(input);
     /// let expected = Vector4 { x: 1.0, y: 2.0, z: 3.0, w: 0.0 };
     /// assert_eq!(actual, expected);
@@ -271,7 +254,7 @@ impl ops::Index<u32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut v = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut v = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(v[0], 1.0);
     /// assert_eq!(v[1], 2.0);
     /// assert_eq!(v[2], 3.0);
@@ -323,12 +306,12 @@ impl ops::Neg for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = -Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// let expected = Vector4::construct(-1.0, -2.0, -3.0, -4.0);
+    /// let actual = -Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// let expected = Vector4::make(-1.0, -2.0, -3.0, -4.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn neg(self) -> Vector4 {
-        Vector4::construct(-self.x, -self.y, -self.z, -self.w)
+        Vector4::make(-self.x, -self.y, -self.z, -self.w)
     }
 }
 
@@ -340,12 +323,12 @@ impl ops::Add<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0) + 1.0;
-    /// let expected = Vector4::construct(2.0, 3.0, 4.0, 5.0);
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) + 1.0;
+    /// let expected = Vector4::make(2.0, 3.0, 4.0, 5.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add(self, _rhs: f32) -> Vector4 {
-        Vector4::construct(self.x + _rhs, self.y + _rhs, self.z + _rhs, self.w + _rhs)
+        Vector4::make(self.x + _rhs, self.y + _rhs, self.z + _rhs, self.w + _rhs)
     }
 }
 
@@ -357,14 +340,14 @@ impl ops::Add<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// let b = Vector4::construct(5.0, 6.0, 7.0, 8.0);
+    /// let a = Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// let b = Vector4::make(5.0, 6.0, 7.0, 8.0);
     /// let actual = a + b;
-    /// let expected = Vector4::construct(6.0, 8.0, 10.0, 12.0);
+    /// let expected = Vector4::make(6.0, 8.0, 10.0, 12.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add(self, _rhs: Vector4) -> Vector4 {
-        Vector4::construct(
+        Vector4::make(
             self.x + _rhs.x,
             self.y + _rhs.y,
             self.z + _rhs.z,
@@ -379,9 +362,9 @@ impl ops::AddAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual += 10.0;
-    /// let expected = Vector4::construct(11.0, 12.0, 13.0, 14.0);
+    /// let expected = Vector4::make(11.0, 12.0, 13.0, 14.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add_assign(&mut self, _rhs: f32) {
@@ -398,9 +381,9 @@ impl ops::AddAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// actual += Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// let expected = Vector4::construct(2.0, 4.0, 6.0, 8.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// actual += Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// let expected = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add_assign(&mut self, _rhs: Vector4) {
@@ -419,12 +402,12 @@ impl ops::Sub<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0) - 10.0;
-    /// let expected = Vector4::construct(-9.0, -8.0, -7.0, -6.0);
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) - 10.0;
+    /// let expected = Vector4::make(-9.0, -8.0, -7.0, -6.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn sub(self, _rhs: f32) -> Vector4 {
-        Vector4::construct(self.x - _rhs, self.y - _rhs, self.z - _rhs, self.w - _rhs)
+        Vector4::make(self.x - _rhs, self.y - _rhs, self.z - _rhs, self.w - _rhs)
     }
 }
 
@@ -436,14 +419,14 @@ impl ops::Sub<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// let b = Vector4::construct(5.0, 4.0, 3.0, 2.0);
+    /// let a = Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// let b = Vector4::make(5.0, 4.0, 3.0, 2.0);
     /// let actual = a - b;
-    /// let expected = Vector4::construct(-4.0, -2.0, 0.0, 2.0);
+    /// let expected = Vector4::make(-4.0, -2.0, 0.0, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn sub(self, _rhs: Vector4) -> Vector4 {
-        Vector4::construct(
+        Vector4::make(
             self.x - _rhs.x,
             self.y - _rhs.y,
             self.z - _rhs.z,
@@ -458,9 +441,9 @@ impl ops::SubAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual -= 1.0;
-    /// let expected = Vector4::construct(0.0, 1.0, 2.0, 3.0);
+    /// let expected = Vector4::make(0.0, 1.0, 2.0, 3.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn sub_assign(&mut self, _rhs: f32) {
@@ -477,8 +460,8 @@ impl ops::SubAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// actual -= Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// actual -= Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual, Vector4::new());
     /// ```
     fn sub_assign(&mut self, _rhs: Vector4) {
@@ -497,12 +480,12 @@ impl ops::Mul<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0) * 2.0;
-    /// let expected = Vector4::construct(2.0, 4.0, 6.0, 8.0);
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) * 2.0;
+    /// let expected = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul(self, _rhs: f32) -> Vector4 {
-        Vector4::construct(self.x * _rhs, self.y * _rhs, self.z * _rhs, self.w * _rhs)
+        Vector4::make(self.x * _rhs, self.y * _rhs, self.z * _rhs, self.w * _rhs)
     }
 }
 
@@ -514,14 +497,14 @@ impl ops::Mul<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// let b = Vector4::construct(5.0, 6.0, 7.0, 8.0);
+    /// let a = Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// let b = Vector4::make(5.0, 6.0, 7.0, 8.0);
     /// let actual = a * b;
-    /// let expected = Vector4::construct(5.0, 12.0, 21.0, 32.0);
+    /// let expected = Vector4::make(5.0, 12.0, 21.0, 32.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul(self, _rhs: Vector4) -> Vector4 {
-        Vector4::construct(
+        Vector4::make(
             self.x * _rhs.x,
             self.y * _rhs.y,
             self.z * _rhs.z,
@@ -536,9 +519,9 @@ impl ops::MulAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual *= 2.0;
-    /// let expected = Vector4::construct(2.0, 4.0, 6.0, 8.0);
+    /// let expected = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul_assign(&mut self, _rhs: f32) {
@@ -555,9 +538,9 @@ impl ops::MulAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
-    /// actual *= Vector4::construct(2.0, 3.0, 6.0, 8.0);
-    /// let expected = Vector4::construct(2.0, 6.0, 18.0, 32.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
+    /// actual *= Vector4::make(2.0, 3.0, 6.0, 8.0);
+    /// let expected = Vector4::make(2.0, 6.0, 18.0, 32.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul_assign(&mut self, _rhs: Vector4) {
@@ -576,12 +559,12 @@ impl ops::Div<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::construct(1.0, 2.0, 3.0, 4.0) / 2.0;
-    /// let expected = Vector4::construct(0.5, 1.0, 1.5, 2.0);
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) / 2.0;
+    /// let expected = Vector4::make(0.5, 1.0, 1.5, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn div(self, _rhs: f32) -> Vector4 {
-        Vector4::construct(self.x / _rhs, self.y / _rhs, self.z / _rhs, self.w / _rhs)
+        Vector4::make(self.x / _rhs, self.y / _rhs, self.z / _rhs, self.w / _rhs)
     }
 }
 
@@ -593,14 +576,14 @@ impl ops::Div<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let a = Vector4::construct(2.0, 4.0, 6.0, 8.0);
-    /// let b = Vector4::construct(1.0, 4.0, 12.0, 32.0);
+    /// let a = Vector4::make(2.0, 4.0, 6.0, 8.0);
+    /// let b = Vector4::make(1.0, 4.0, 12.0, 32.0);
     /// let actual = a / b;
-    /// let expected = Vector4::construct(2.0, 1.0, 0.5, 0.25);
+    /// let expected = Vector4::make(2.0, 1.0, 0.5, 0.25);
     /// assert_eq!(actual, expected);
     /// ```
     fn div(self, _rhs: Vector4) -> Vector4 {
-        Vector4::construct(
+        Vector4::make(
             self.x / _rhs.x,
             self.y / _rhs.y,
             self.z / _rhs.z,
@@ -615,9 +598,9 @@ impl ops::DivAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual /= 2.0;
-    /// let expected = Vector4::construct(0.5, 1.0, 1.5, 2.0);
+    /// let expected = Vector4::make(0.5, 1.0, 1.5, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn div_assign(&mut self, _rhs: f32) {
@@ -634,9 +617,9 @@ impl ops::DivAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let mut actual = Vector4::construct(2.0, 4.0, 6.0, 8.0);
-    /// actual /= Vector4::construct(1.0, 4.0, 12.0, 32.0);
-    /// let expected = Vector4::construct(2.0, 1.0, 0.5, 0.25);
+    /// let mut actual = Vector4::make(2.0, 4.0, 6.0, 8.0);
+    /// actual /= Vector4::make(1.0, 4.0, 12.0, 32.0);
+    /// let expected = Vector4::make(2.0, 1.0, 0.5, 0.25);
     /// assert_eq!(actual, expected);
     /// ```
     fn div_assign(&mut self, _rhs: Vector4) {

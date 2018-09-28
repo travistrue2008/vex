@@ -10,7 +10,7 @@ pub struct Matrix2 {
 }
 
 impl Matrix2 {
-    /// Creates a matrix set to an identity
+    /// Creates a matrix set to its identity
     ///
     /// # Examples
     /// ```
@@ -30,11 +30,11 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// let expected = [1.0, 2.0, 3.0, 4.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
-    pub fn construct(m11: f32, m21: f32, m12: f32, m22: f32) -> Matrix2 {
+    pub fn make(m11: f32, m21: f32, m12: f32, m22: f32) -> Matrix2 {
         Matrix2 {
             m: [m11, m21, m12, m22],
         }
@@ -45,7 +45,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual.m11(), 1.0);
     /// ```
     pub fn m11(&self) -> f32 {
@@ -57,7 +57,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual.m21(), 2.0);
     /// ```
     pub fn m21(&self) -> f32 {
@@ -69,7 +69,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual.m12(), 3.0);
     /// ```
     pub fn m12(&self) -> f32 {
@@ -81,7 +81,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual.m22(), 4.0);
     /// ```
     pub fn m22(&self) -> f32 {
@@ -93,7 +93,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// let expected = [1.0, 2.0, 3.0, 4.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
@@ -106,7 +106,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(0.0, 0.0, 0.0, 0.0);
+    /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m11(1.0);
     /// let expected = [1.0, 0.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
@@ -120,7 +120,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(0.0, 0.0, 0.0, 0.0);
+    /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m21(1.0);
     /// let expected = [0.0, 1.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
@@ -134,7 +134,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(0.0, 0.0, 0.0, 0.0);
+    /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m12(1.0);
     /// let expected = [0.0, 0.0, 1.0, 0.0];
     /// assert_eq!(actual.m(), expected);
@@ -148,7 +148,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(0.0, 0.0, 0.0, 0.0);
+    /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m22(1.0);
     /// let expected = [0.0, 0.0, 0.0, 1.0];
     /// assert_eq!(actual.m(), expected);
@@ -164,7 +164,7 @@ impl Matrix2 {
     /// use vex::Matrix2;
     /// let mut actual = Matrix2::new();
     /// actual.set(1.0, 2.0, 3.0, 4.0);
-    /// let expected = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let expected = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn set(&mut self, m11: f32, m21: f32, m12: f32, m22: f32) {
@@ -174,30 +174,14 @@ impl Matrix2 {
         self.set_m22(m22);
     }
 
-    /// Sets the matrix to its identity
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// actual.identity();
-    /// assert_eq!(actual, Matrix2::new());
-    /// ```
-    pub fn identity(&mut self) {
-        self.set_m11(1.0);
-        self.set_m21(0.0);
-        self.set_m12(0.0);
-        self.set_m22(1.0);
-    }
-
     /// Transposes the matrix's elements
     ///
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// actual.transpose();
-    /// let expected = Matrix2::construct(1.0, 3.0, 2.0, 4.0);
+    /// let expected = Matrix2::make(1.0, 3.0, 2.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn transpose(&mut self) {
@@ -211,7 +195,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0).determinant();
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0).determinant();
     /// assert_eq!(actual, -2.0);
     /// ```
     pub fn determinant(&self) -> f32 {
@@ -223,9 +207,9 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// actual.inverse();
-    /// let expected = Matrix2::construct(-2.0, 1.0, 1.5, -0.5);
+    /// let expected = Matrix2::make(-2.0, 1.0, 1.5, -0.5);
     /// assert_eq!(actual, expected);
     /// ```
     pub fn inverse(&mut self) -> bool {
@@ -252,7 +236,7 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// assert!(actual.is_valid());
     /// ```
     pub fn is_valid(&self) -> bool {
@@ -282,8 +266,8 @@ impl ops::Neg for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = -Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// let expected = Matrix2::construct(-1.0, -2.0, -3.0, -4.0);
+    /// let actual = -Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// let expected = Matrix2::make(-1.0, -2.0, -3.0, -4.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn neg(self) -> Matrix2 {
@@ -304,8 +288,8 @@ impl ops::Add<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0) + 1.0;
-    /// let expected = Matrix2::construct(2.0, 3.0, 4.0, 5.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0) + 1.0;
+    /// let expected = Matrix2::make(2.0, 3.0, 4.0, 5.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add(self, _rhs: f32) -> Matrix2 {
@@ -326,10 +310,10 @@ impl ops::Add<Matrix2> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let a = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// let b = Matrix2::construct(5.0, 6.0, 7.0, 8.0);
+    /// let a = Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// let b = Matrix2::make(5.0, 6.0, 7.0, 8.0);
     /// let actual = a + b;
-    /// let expected = Matrix2::construct(6.0, 8.0, 10.0, 12.0);
+    /// let expected = Matrix2::make(6.0, 8.0, 10.0, 12.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add(self, _rhs: Matrix2) -> Matrix2 {
@@ -348,9 +332,9 @@ impl ops::AddAssign<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// actual += 10.0;
-    /// let expected = Matrix2::construct(11.0, 12.0, 13.0, 14.0);
+    /// let expected = Matrix2::make(11.0, 12.0, 13.0, 14.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add_assign(&mut self, _rhs: f32) {
@@ -366,9 +350,9 @@ impl ops::AddAssign<Matrix2> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// actual += Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// let expected = Matrix2::construct(2.0, 4.0, 6.0, 8.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// actual += Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// let expected = Matrix2::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn add_assign(&mut self, _rhs: Matrix2) {
@@ -386,8 +370,8 @@ impl ops::Sub<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0) - 10.0;
-    /// let expected = Matrix2::construct(-9.0, -8.0, -7.0, -6.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0) - 10.0;
+    /// let expected = Matrix2::make(-9.0, -8.0, -7.0, -6.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn sub(self, _rhs: f32) -> Matrix2 {
@@ -408,10 +392,10 @@ impl ops::Sub<Matrix2> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let a = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// let b = Matrix2::construct(5.0, 4.0, 3.0, 2.0);
+    /// let a = Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// let b = Matrix2::make(5.0, 4.0, 3.0, 2.0);
     /// let actual = a - b;
-    /// let expected = Matrix2::construct(-4.0, -2.0, 0.0, 2.0);
+    /// let expected = Matrix2::make(-4.0, -2.0, 0.0, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn sub(self, _rhs: Matrix2) -> Matrix2 {
@@ -430,9 +414,9 @@ impl ops::SubAssign<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// actual -= 1.0;
-    /// let expected = Matrix2::construct(0.0, 1.0, 2.0, 3.0);
+    /// let expected = Matrix2::make(0.0, 1.0, 2.0, 3.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn sub_assign(&mut self, _rhs: f32) {
@@ -448,8 +432,8 @@ impl ops::SubAssign<Matrix2> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(2.0, 2.0, 3.0, 5.0);
-    /// actual -= Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Matrix2::make(2.0, 2.0, 3.0, 5.0);
+    /// actual -= Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual, Matrix2::new());
     /// ```
     fn sub_assign(&mut self, _rhs: Matrix2) {
@@ -467,8 +451,8 @@ impl ops::Mul<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0) * 2.0;
-    /// let expected = Matrix2::construct(2.0, 4.0, 6.0, 8.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0) * 2.0;
+    /// let expected = Matrix2::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul(self, _rhs: f32) -> Matrix2 {
@@ -489,10 +473,10 @@ impl ops::Mul<Matrix2> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let a = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// let b = Matrix2::construct(5.0, 6.0, 7.0, 8.0);
+    /// let a = Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// let b = Matrix2::make(5.0, 6.0, 7.0, 8.0);
     /// let actual = a * b;
-    /// let expected = Matrix2::construct(23.0, 34.0, 31.0, 46.0);
+    /// let expected = Matrix2::make(23.0, 34.0, 31.0, 46.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul(self, _rhs: Matrix2) -> Matrix2 {
@@ -500,7 +484,7 @@ impl ops::Mul<Matrix2> for Matrix2 {
         let m21 = self.m21() * _rhs.m11() + self.m22() * _rhs.m21();
         let m12 = self.m11() * _rhs.m12() + self.m12() * _rhs.m22();
         let m22 = self.m21() * _rhs.m12() + self.m22() * _rhs.m22();
-        Matrix2::construct(m11, m21, m12, m22)
+        Matrix2::make(m11, m21, m12, m22)
     }
 }
 
@@ -510,9 +494,9 @@ impl ops::MulAssign<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// actual *= 2.0;
-    /// let expected = Matrix2::construct(2.0, 4.0, 6.0, 8.0);
+    /// let expected = Matrix2::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul_assign(&mut self, _rhs: f32) {
@@ -528,9 +512,9 @@ impl ops::MulAssign<Matrix2> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// actual *= Matrix2::construct(5.0, 6.0, 7.0, 8.0);
-    /// let expected = Matrix2::construct(23.0, 34.0, 31.0, 46.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// actual *= Matrix2::make(5.0, 6.0, 7.0, 8.0);
+    /// let expected = Matrix2::make(23.0, 34.0, 31.0, 46.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn mul_assign(&mut self, _rhs: Matrix2) {
@@ -547,8 +531,8 @@ impl ops::Div<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0) / 2.0;
-    /// let expected = Matrix2::construct(0.5, 1.0, 1.5, 2.0);
+    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0) / 2.0;
+    /// let expected = Matrix2::make(0.5, 1.0, 1.5, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn div(self, _rhs: f32) -> Matrix2 {
@@ -567,9 +551,9 @@ impl ops::DivAssign<f32> for Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// let mut actual = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
+    /// let mut actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// actual /= 2.0;
-    /// let expected = Matrix2::construct(0.5, 1.0, 1.5, 2.0);
+    /// let expected = Matrix2::make(0.5, 1.0, 1.5, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn div_assign(&mut self, _rhs: f32) {
@@ -617,14 +601,14 @@ impl common::TransformPoint<Vector2> for Matrix2 {
     /// use vex::Matrix2;
     /// use vex::Vector2;
     ///
-    /// let m = Matrix2::construct(1.0, 2.0, 3.0, 4.0);
-    /// let v = Vector2::construct(1.0, 2.0);
+    /// let m = Matrix2::make(1.0, 2.0, 3.0, 4.0);
+    /// let v = Vector2::make(1.0, 2.0);
     /// let actual = m.transform_point(&v);
-    /// let expected = Vector2::construct(7.0, 10.0);
+    /// let expected = Vector2::make(7.0, 10.0);
     /// assert_eq!(actual, expected);
     /// ```
     fn transform_point(&self, point: &Vector2) -> Vector2 {
-        Vector2::construct(
+        Vector2::make(
             self.m11() * point.x + self.m12() * point.y,
             self.m21() * point.x + self.m22() * point.y,
         )
