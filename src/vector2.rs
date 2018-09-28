@@ -634,7 +634,13 @@ impl cmp::PartialEq for Vector2 {
     /// assert!(Vector2::new() == Vector2::new());
     /// ```
     fn eq(&self, _rhs: &Vector2) -> bool {
-        self.x == _rhs.x && self.y == _rhs.y
+        for i in 0..2 {
+            if self[i] != _rhs[i] {
+                return false;
+            }
+        }
+
+        true
     }
 }
 
