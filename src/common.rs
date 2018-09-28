@@ -6,12 +6,12 @@ pub fn is_valid(x: f32) -> bool {
 ///
 /// # Examples
 /// ```
-/// use vex::math::next_power_of_two;
+/// use vex::common::next_power_of_two;
 /// let n = next_power_of_two(1);
 /// assert_eq!(n, 2);
 /// ```
 /// ```
-/// use vex::math::next_power_of_two;
+/// use vex::common::next_power_of_two;
 /// let n = next_power_of_two(2);
 /// assert_eq!(n, 4);
 /// ```
@@ -29,17 +29,17 @@ pub fn next_power_of_two(x: i32) -> i32 {
 ///
 /// # Examples
 /// ```
-/// use vex::math::is_power_of_two;
+/// use vex::common::is_power_of_two;
 /// let n = is_power_of_two(1);
 /// assert_eq!(n, true);
 /// ```
 /// ```
-/// use vex::math::is_power_of_two;
+/// use vex::common::is_power_of_two;
 /// let n = is_power_of_two(2);
 /// assert_eq!(n, true);
 /// ```
 /// ```
-/// use vex::math::is_power_of_two;
+/// use vex::common::is_power_of_two;
 /// let n = is_power_of_two(3);
 /// assert_eq!(n, false);
 /// ```
@@ -51,12 +51,12 @@ pub fn is_power_of_two(x: i32) -> bool {
 ///
 /// # Examples
 /// ```
-/// use vex::math::sign;
+/// use vex::common::sign;
 /// let mul = sign(1234.0);
 /// assert_eq!(mul, 1.0);
 /// ```
 /// ```
-/// use vex::math::sign;
+/// use vex::common::sign;
 /// let mul = sign(-1234.0);
 /// assert_eq!(mul, -1.0);
 /// ```
