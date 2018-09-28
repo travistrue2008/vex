@@ -545,7 +545,7 @@ impl ops::MulAssign<f32> for Mat2 {
     }
 }
 
-/// Multiply a matrix by another vector
+/// Multiply a matrix by another matrix
 ///
 /// # Examples
 /// ```
@@ -557,19 +557,12 @@ impl ops::MulAssign<f32> for Mat2 {
 /// ```
 impl ops::MulAssign<Mat2> for Mat2 {
     fn mul_assign(&mut self, _rhs: Mat2) {
-        let m11 = self.m11() * _rhs.m11() + self.m12() * _rhs.m21();
-        let m21 = self.m21() * _rhs.m11() + self.m22() * _rhs.m21();
-        let m12 = self.m11() * _rhs.m12() + self.m12() * _rhs.m22();
-        let m22 = self.m21() * _rhs.m12() + self.m22() * _rhs.m22();
-
-        self.set_m11(m11);
-        self.set_m21(m21);
-        self.set_m12(m12);
-        self.set_m22(m22);
+        let res = *self * _rhs;
+        self.m = res.m;
     }
 }
 
-/// Find the resulting matrix by dividing a scalar to a matrix's components
+/// Find the resulting matrix by dividing a scalar to a matrix's elements
 ///
 /// # Examples
 /// ```
@@ -591,27 +584,6 @@ impl ops::Div<f32> for Mat2 {
     }
 }
 
-/// Divide two matrices
-///
-/// # Examples
-/// ```
-/// use vex::Mat2;
-/// let a = Mat2::construct(1.0, 2.0, 3.0, 4.0);
-/// let b = Mat2::construct(5.0, 6.0, 7.0, 8.0);
-/// let actual = a / b;
-/// let expected = Mat2::construct(5.0, 4.0, -4.0, -3.0);
-/// assert_eq!(actual, expected);
-/// ```
-impl ops::Div<Mat2> for Mat2 {
-    type Output = Mat2;
-
-    fn div(self, _rhs: Mat2) -> Mat2 {
-        let mut rhs_inv = _rhs.clone();
-        rhs_inv.inverse();
-        self * rhs_inv
-    }
-}
-
 /// Divide a matrix by a scalar
 ///
 /// # Examples
@@ -627,25 +599,6 @@ impl ops::DivAssign<f32> for Mat2 {
         for elem in self.m.iter_mut() {
             *elem /= _rhs;
         }
-    }
-}
-
-/// Divide a matrix by another matrix
-///
-/// # Examples
-/// ```
-/// use vex::Mat2;
-/// let mut actual = Mat2::construct(1.0, 2.0, 3.0, 4.0);
-/// actual /= Mat2::construct(5.0, 6.0, 7.0, 8.0);
-/// let expected = Mat2::construct(5.0, 4.0, -4.0, -3.0);
-/// assert_eq!(actual, expected);
-/// ```
-impl ops::DivAssign<Mat2> for Mat2 {
-    fn div_assign(&mut self, _rhs: Mat2) {
-        let lhs = self.clone();
-        let mut rhs = _rhs.clone();
-        rhs.inverse();
-        self.m = (lhs * rhs).m;
     }
 }
 
