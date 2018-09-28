@@ -10,7 +10,7 @@ pub struct Mat2 {
 }
 
 impl Mat2 {
-    /// Creates a new matrix set to an identity
+    /// Creates a matrix set to an identity
     ///
     /// # Examples
     /// ```
@@ -25,7 +25,7 @@ impl Mat2 {
         }
     }
 
-    /// Creates a new matrix from the provided values
+    /// Creates a matrix from the provided values
     ///
     /// # Examples
     /// ```
@@ -585,6 +585,7 @@ impl cmp::PartialEq for Mat2 {
     /// # Examples
     /// ```
     /// use vex::Mat2;
+    ///
     /// assert!(Mat2::new() == Mat2::new());
     /// ```
     fn eq(&self, _rhs: &Mat2) -> bool {
@@ -612,15 +613,17 @@ impl math::TransformPoint<Vec2> for Mat2 {
     ///
     /// # Examples
     /// ```
+    /// use vex::math::TransformPoint;
     /// use vex::Mat2;
     /// use vex::Vec2;
+    ///
     /// let m = Mat2::construct(1.0, 2.0, 3.0, 4.0);
     /// let v = Vec2::construct(1.0, 2.0);
-    /// let actual = m.transform_point(v);
+    /// let actual = m.transform_point(&v);
     /// let expected = Vec2::construct(7.0, 10.0);
     /// assert_eq!(actual, expected);
     /// ```
-    fn transform_point(&self, point: Vec2) -> Vec2 {
+    fn transform_point(&self, point: &Vec2) -> Vec2 {
         Vec2::construct(
             self.m11() * point.x + self.m12() * point.y,
             self.m21() * point.x + self.m22() * point.y,
