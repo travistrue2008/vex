@@ -25,6 +25,7 @@ impl Matrix3 {
     /// let actual = Matrix3::new();
     /// assert_eq!(actual, IDENTITY);
     /// ```
+    #[inline]
     pub fn new() -> Matrix3 {
         IDENTITY
     }
@@ -38,6 +39,7 @@ impl Matrix3 {
     /// let expected = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn make(
         m11: f32,
         m21: f32,
@@ -62,6 +64,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m11(), 1.0);
     /// ```
+    #[inline]
     pub fn m11(&self) -> f32 {
         self.m[0]
     }
@@ -74,6 +77,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m21(), 2.0);
     /// ```
+    #[inline]
     pub fn m21(&self) -> f32 {
         self.m[1]
     }
@@ -86,6 +90,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m31(), 3.0);
     /// ```
+    #[inline]
     pub fn m31(&self) -> f32 {
         self.m[2]
     }
@@ -98,6 +103,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m12(), 4.0);
     /// ```
+    #[inline]
     pub fn m12(&self) -> f32 {
         self.m[3]
     }
@@ -110,6 +116,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m22(), 5.0);
     /// ```
+    #[inline]
     pub fn m22(&self) -> f32 {
         self.m[4]
     }
@@ -122,6 +129,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m32(), 6.0);
     /// ```
+    #[inline]
     pub fn m32(&self) -> f32 {
         self.m[5]
     }
@@ -134,6 +142,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m13(), 7.0);
     /// ```
+    #[inline]
     pub fn m13(&self) -> f32 {
         self.m[6]
     }
@@ -146,6 +155,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m23(), 8.0);
     /// ```
+    #[inline]
     pub fn m23(&self) -> f32 {
         self.m[7]
     }
@@ -158,6 +168,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual.m33(), 9.0);
     /// ```
+    #[inline]
     pub fn m33(&self) -> f32 {
         self.m[8]
     }
@@ -171,6 +182,7 @@ impl Matrix3 {
     /// let expected = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn m(&self) -> [f32; 9] {
         self.m
     }
@@ -185,6 +197,7 @@ impl Matrix3 {
     /// let expected = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m11(&mut self, v: f32) {
         self.m[0] = v;
     }
@@ -199,6 +212,7 @@ impl Matrix3 {
     /// let expected = [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m21(&mut self, v: f32) {
         self.m[1] = v;
     }
@@ -213,6 +227,7 @@ impl Matrix3 {
     /// let expected = [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m31(&mut self, v: f32) {
         self.m[2] = v;
     }
@@ -227,6 +242,7 @@ impl Matrix3 {
     /// let expected = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m12(&mut self, v: f32) {
         self.m[3] = v;
     }
@@ -241,6 +257,7 @@ impl Matrix3 {
     /// let expected = [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m22(&mut self, v: f32) {
         self.m[4] = v;
     }
@@ -255,6 +272,7 @@ impl Matrix3 {
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m32(&mut self, v: f32) {
         self.m[5] = v;
     }
@@ -269,6 +287,7 @@ impl Matrix3 {
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m13(&mut self, v: f32) {
         self.m[6] = v;
     }
@@ -283,6 +302,7 @@ impl Matrix3 {
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m23(&mut self, v: f32) {
         self.m[7] = v;
     }
@@ -297,6 +317,7 @@ impl Matrix3 {
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0];
     /// assert_eq!(actual.m(), expected);
     /// ```
+    #[inline]
     pub fn set_m33(&mut self, v: f32) {
         self.m[8] = v;
     }
@@ -311,6 +332,7 @@ impl Matrix3 {
     /// let expected = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn set(
         &mut self,
         m11: f32,
@@ -344,6 +366,7 @@ impl Matrix3 {
     /// let expected = Matrix3::make(1.0, 4.0, 7.0, 2.0, 5.0, 8.0, 3.0, 6.0, 9.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn transpose(&mut self) {
         let mut m = self.m;
 
@@ -367,6 +390,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0).determinant();
     /// assert_eq!(actual, 0.0);
     /// ```
+    #[inline]
     pub fn determinant(&self) -> f32 {
         self.m11() * (self.m22() * self.m33() - self.m23() * self.m32())
             - (self.m12() * (self.m21() * self.m33() - self.m23() * self.m31()))
@@ -383,6 +407,7 @@ impl Matrix3 {
     /// let expected = Matrix3::make(-24.0, 20.0, -5.0, 18.0, -15.0, 4.0, 5.0, -4.0, 1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn inverse(&mut self) -> bool {
         let det = self.determinant();
         if det == 0.0 {
@@ -429,6 +454,7 @@ impl Matrix3 {
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// assert!(actual.is_valid());
     /// ```
+    #[inline]
     pub fn is_valid(&self) -> bool {
         for i in 0..9 {
             if !common::is_valid(self.m[i]) {
@@ -439,6 +465,7 @@ impl Matrix3 {
         true
     }
 
+    #[inline]
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
@@ -468,6 +495,7 @@ impl ops::Neg for Matrix3 {
     /// let expected = Matrix3::make(-1.0, -2.0, -3.0, -4.0, -5.0, -6.0, -7.0, -8.0, -9.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn neg(self) -> Matrix3 {
         let mut m = [0.0; 9];
         for (i, elem) in self.m.iter().enumerate() {
@@ -490,6 +518,7 @@ impl ops::Add<f32> for Matrix3 {
     /// let expected = Matrix3::make(2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
         for (i, elem) in self.m.iter().enumerate() {
@@ -514,6 +543,7 @@ impl ops::Add<Matrix3> for Matrix3 {
     /// let expected = Matrix3::make(10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add(self, _rhs: Matrix3) -> Matrix3 {
         let mut mat = Matrix3::new();
         for (i, elem) in self.m.iter().enumerate() {
@@ -535,6 +565,7 @@ impl ops::AddAssign<f32> for Matrix3 {
     /// let expected = Matrix3::make(11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add_assign(&mut self, _rhs: f32) {
         for elem in self.m.iter_mut() {
             *elem += _rhs;
@@ -553,6 +584,7 @@ impl ops::AddAssign<Matrix3> for Matrix3 {
     /// let expected = Matrix3::make(10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add_assign(&mut self, _rhs: Matrix3) {
         for (i, elem) in self.m.iter_mut().enumerate() {
             *elem += _rhs.m[i];
@@ -572,6 +604,7 @@ impl ops::Sub<f32> for Matrix3 {
     /// let expected = Matrix3::make(-9.0, -8.0, -7.0, -6.0, -5.0, -4.0, -3.0, -2.0, -1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn sub(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
         for (i, elem) in self.m.iter().enumerate() {
@@ -596,6 +629,7 @@ impl ops::Sub<Matrix3> for Matrix3 {
     /// let expected = Matrix3::make(-8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn sub(self, _rhs: Matrix3) -> Matrix3 {
         let mut mat = Matrix3::new();
         for (i, elem) in self.m.iter().enumerate() {
@@ -617,6 +651,7 @@ impl ops::SubAssign<f32> for Matrix3 {
     /// let expected = Matrix3::make(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn sub_assign(&mut self, _rhs: f32) {
         for elem in self.m.iter_mut() {
             *elem -= _rhs;
@@ -634,6 +669,7 @@ impl ops::SubAssign<Matrix3> for Matrix3 {
     /// actual -= Matrix3::make(1.0, 3.0, 4.0, 5.0, 5.0, 7.0, 8.0, 9.0, 9.0);
     /// assert_eq!(actual, Matrix3::new());
     /// ```
+    #[inline]
     fn sub_assign(&mut self, _rhs: Matrix3) {
         for (i, elem) in self.m.iter_mut().enumerate() {
             *elem -= _rhs.m[i];
@@ -653,6 +689,7 @@ impl ops::Mul<f32> for Matrix3 {
     /// let expected = Matrix3::make(2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
         for (i, elem) in self.m.iter().enumerate() {
@@ -677,6 +714,7 @@ impl ops::Mul<Matrix3> for Matrix3 {
     /// let expected = Matrix3::make(90.0, 114.0, 138.0, 54.0, 69.0, 84.0, 18.0, 24.0, 30.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul(self, _rhs: Matrix3) -> Matrix3 {
         let m11 = self.m11() * _rhs.m11() + self.m12() * _rhs.m21() + self.m13() * _rhs.m31();
         let m21 = self.m21() * _rhs.m11() + self.m22() * _rhs.m21() + self.m23() * _rhs.m31();
@@ -702,6 +740,7 @@ impl ops::MulAssign<f32> for Matrix3 {
     /// let expected = Matrix3::make(2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul_assign(&mut self, _rhs: f32) {
         for elem in self.m.iter_mut() {
             *elem *= _rhs;
@@ -720,6 +759,7 @@ impl ops::MulAssign<Matrix3> for Matrix3 {
     /// let expected = Matrix3::make(90.0, 114.0, 138.0, 54.0, 69.0, 84.0, 18.0, 24.0, 30.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul_assign(&mut self, _rhs: Matrix3) {
         let res = *self * _rhs;
         self.m = res.m;
@@ -738,6 +778,7 @@ impl ops::Div<f32> for Matrix3 {
     /// let expected = Matrix3::make(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn div(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
         for (i, elem) in self.m.iter().enumerate() {
@@ -759,6 +800,7 @@ impl ops::DivAssign<f32> for Matrix3 {
     /// let expected = Matrix3::make(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn div_assign(&mut self, _rhs: f32) {
         for elem in self.m.iter_mut() {
             *elem /= _rhs;
@@ -774,6 +816,7 @@ impl cmp::PartialEq for Matrix3 {
     /// use vex::Matrix3;
     /// assert!(Matrix3::new() == Matrix3::new());
     /// ```
+    #[inline]
     fn eq(&self, _rhs: &Matrix3) -> bool {
         for (i, elem) in self.m.iter().enumerate() {
             if *elem != _rhs.m[i] {
@@ -786,12 +829,14 @@ impl cmp::PartialEq for Matrix3 {
 }
 
 impl fmt::Debug for Matrix3 {
+    #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.print(f)
     }
 }
 
 impl fmt::Display for Matrix3 {
+    #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.print(f)
     }
@@ -811,6 +856,7 @@ impl common::TransformPoint<Vector2> for Matrix3 {
     /// let expected = Vector2::make(16.0, 20.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn transform_point(&self, point: &Vector2) -> Vector2 {
         Vector2::make(
             self.m11() * point.x + self.m12() * point.y + self.m13(),
@@ -833,6 +879,7 @@ impl common::TransformPoint<Vector3> for Matrix3 {
     /// let expected = Vector3::make(30.0, 36.0, 42.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn transform_point(&self, point: &Vector3) -> Vector3 {
         Vector3::make(
             self.m11() * point.x + self.m12() * point.y + self.m13() * point.z,

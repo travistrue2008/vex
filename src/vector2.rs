@@ -25,6 +25,7 @@ impl Vector2 {
     /// let expected = Vector2 { x: 0.0, y: 0.0 };
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn new() -> Vector2 {
         ZERO
     }
@@ -38,6 +39,7 @@ impl Vector2 {
     /// let expected = Vector2 { x: 1.0, y: 2.0 };
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn make(x: f32, y: f32) -> Vector2 {
         Vector2 { x, y }
     }
@@ -53,6 +55,7 @@ impl Vector2 {
     /// let expected = 0.0;
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn dot(a: &Vector2, b: &Vector2) -> f32 {
         a.x * b.x + a.y * b.y
     }
@@ -68,6 +71,7 @@ impl Vector2 {
     /// let expected = 1.0;
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn cross(a: &Vector2, b: &Vector2) -> f32 {
         a.x * b.y - a.y * b.x
     }
@@ -83,6 +87,7 @@ impl Vector2 {
     /// let expected = Vector2::make(0.0, 1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn cross_scalar_vec(s: f32, v: &Vector2) -> Vector2 {
         Vector2::make(-s * v.y, s * v.x)
     }
@@ -98,6 +103,7 @@ impl Vector2 {
     /// let expected = Vector2::make(0.0, -1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn cross_vec_scalar(v: &Vector2, s: f32) -> Vector2 {
         Vector2::make(s * v.y, -s * v.x)
     }
@@ -113,6 +119,7 @@ impl Vector2 {
     /// let expected = Vector2::make(1.0, 3.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn min(a: &Vector2, b: &Vector2) -> Vector2 {
         Vector2::make(a.x.min(b.x), a.y.min(b.y))
     }
@@ -128,6 +135,7 @@ impl Vector2 {
     /// let expected = Vector2::make(2.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn max(a: &Vector2, b: &Vector2) -> Vector2 {
         Vector2::make(a.x.max(b.x), a.y.max(b.y))
     }
@@ -144,6 +152,7 @@ impl Vector2 {
     /// let expected = Vector2::make(1.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn clamp(&mut self, a: &Vector2, b: &Vector2) {
         let low = Self::min(a, b);
         let high = Self::max(a, b);
@@ -161,6 +170,7 @@ impl Vector2 {
     /// let expected = Vector2::make(1.0, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn set(&mut self, x: f32, y: f32) {
         self.x = x;
         self.y = y;
@@ -175,6 +185,7 @@ impl Vector2 {
     /// let expected = 2.2360679775;
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn magnitude(&self) -> f32 {
         self.magnitude_squared().sqrt()
     }
@@ -188,6 +199,7 @@ impl Vector2 {
     /// let expected = 5.0;
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn magnitude_squared(&self) -> f32 {
         self.x * self.x + self.y * self.y
     }
@@ -202,6 +214,7 @@ impl Vector2 {
     /// let expected = Vector2::make(0.4472135955, 0.894427191);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn normalize(&mut self) -> f32 {
         let length = self.magnitude();
         if length > EPSILON {
@@ -223,6 +236,7 @@ impl Vector2 {
     /// let expected = Vector2::make(1.0, 2.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn abs(&mut self) {
         self.x = self.x.abs();
         self.y = self.y.abs();
@@ -238,6 +252,7 @@ impl Vector2 {
     /// let expected = Vector2::make(-2.0, 1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     pub fn skew(&mut self) {
         let x = self.x;
         self.x = -self.y;
@@ -252,6 +267,7 @@ impl Vector2 {
     /// let actual = Vector2::make(1.0, 2.0);
     /// assert!(actual.is_valid());
     /// ```
+    #[inline]
     pub fn is_valid(&self) -> bool {
         for i in 0..2 {
             if !common::is_valid(self[i]) {
@@ -262,6 +278,7 @@ impl Vector2 {
         true
     }
 
+    #[inline]
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "<{}, {}>", self.x, self.y)
     }
@@ -279,6 +296,7 @@ impl From<Vector3> for Vector2 {
     /// let expected = Vector2 { x: 1.0, y: 2.0 };
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn from(item: Vector3) -> Self {
         Vector2 {
             x: item.x,
@@ -299,6 +317,7 @@ impl ops::Index<u32> for Vector2 {
     /// assert_eq!(v[0], 1.0);
     /// assert_eq!(v[1], 2.0);
     /// ```
+    #[inline]
     fn index(&self, index: u32) -> &f32 {
         match index {
             0 => &self.x,
@@ -320,6 +339,7 @@ impl ops::IndexMut<u32> for Vector2 {
     /// assert_eq!(v[0], 3.0);
     /// assert_eq!(v[1], 4.0);
     /// ```
+    #[inline]
     fn index_mut<'a>(&'a mut self, index: u32) -> &'a mut f32 {
         match index {
             0 => &mut self.x,
@@ -341,6 +361,7 @@ impl ops::Neg for Vector2 {
     /// let expected = Vector2::make(-1.0, -2.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn neg(self) -> Vector2 {
         Vector2::make(-self.x, -self.y)
     }
@@ -358,6 +379,7 @@ impl ops::Add<f32> for Vector2 {
     /// let expected = Vector2::make(2.0, 3.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add(self, _rhs: f32) -> Vector2 {
         Vector2::make(self.x + _rhs, self.y + _rhs)
     }
@@ -377,6 +399,7 @@ impl ops::Add<Vector2> for Vector2 {
     /// let expected = Vector2::make(4.0, 6.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add(self, _rhs: Vector2) -> Vector2 {
         Vector2::make(self.x + _rhs.x, self.y + _rhs.y)
     }
@@ -393,6 +416,7 @@ impl ops::AddAssign<f32> for Vector2 {
     /// let expected = Vector2::make(11.0, 12.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add_assign(&mut self, _rhs: f32) {
         self.x += _rhs;
         self.y += _rhs;
@@ -410,6 +434,7 @@ impl ops::AddAssign<Vector2> for Vector2 {
     /// let expected = Vector2::make(2.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn add_assign(&mut self, _rhs: Vector2) {
         self.x += _rhs.x;
         self.y += _rhs.y;
@@ -428,6 +453,7 @@ impl ops::Sub<f32> for Vector2 {
     /// let expected = Vector2::make(-9.0, -8.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn sub(self, _rhs: f32) -> Vector2 {
         Vector2::make(self.x - _rhs, self.y - _rhs)
     }
@@ -447,6 +473,7 @@ impl ops::Sub<Vector2> for Vector2 {
     /// let expected = Vector2::make(-3.0, -1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn sub(self, _rhs: Vector2) -> Vector2 {
         Vector2::make(self.x - _rhs.x, self.y - _rhs.y)
     }
@@ -463,6 +490,7 @@ impl ops::SubAssign<f32> for Vector2 {
     /// let expected = Vector2::make(0.0, 1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn sub_assign(&mut self, _rhs: f32) {
         self.x -= _rhs;
         self.y -= _rhs;
@@ -479,6 +507,7 @@ impl ops::SubAssign<Vector2> for Vector2 {
     /// actual -= Vector2::make(1.0, 2.0);
     /// assert_eq!(actual, Vector2::new());
     /// ```
+    #[inline]
     fn sub_assign(&mut self, _rhs: Vector2) {
         self.x -= _rhs.x;
         self.y -= _rhs.y;
@@ -497,6 +526,7 @@ impl ops::Mul<f32> for Vector2 {
     /// let expected = Vector2::make(2.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul(self, _rhs: f32) -> Vector2 {
         Vector2::make(self.x * _rhs, self.y * _rhs)
     }
@@ -516,6 +546,7 @@ impl ops::Mul<Vector2> for Vector2 {
     /// let expected = Vector2::make(2.0, 6.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul(self, _rhs: Vector2) -> Vector2 {
         Vector2::make(self.x * _rhs.x, self.y * _rhs.y)
     }
@@ -532,6 +563,7 @@ impl ops::MulAssign<f32> for Vector2 {
     /// let expected = Vector2::make(2.0, 4.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul_assign(&mut self, _rhs: f32) {
         self.x *= _rhs;
         self.y *= _rhs;
@@ -549,6 +581,7 @@ impl ops::MulAssign<Vector2> for Vector2 {
     /// let expected = Vector2::make(2.0, 6.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn mul_assign(&mut self, _rhs: Vector2) {
         self.x *= _rhs.x;
         self.y *= _rhs.y;
@@ -567,6 +600,7 @@ impl ops::Div<f32> for Vector2 {
     /// let expected = Vector2::make(0.5, 1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn div(self, _rhs: f32) -> Vector2 {
         Vector2::make(self.x / _rhs, self.y / _rhs)
     }
@@ -586,6 +620,7 @@ impl ops::Div<Vector2> for Vector2 {
     /// let expected = Vector2::make(0.5, 0.25);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn div(self, _rhs: Vector2) -> Vector2 {
         Vector2::make(self.x / _rhs.x, self.y / _rhs.y)
     }
@@ -602,6 +637,7 @@ impl ops::DivAssign<f32> for Vector2 {
     /// let expected = Vector2::make(0.5, 1.0);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn div_assign(&mut self, _rhs: f32) {
         self.x /= _rhs;
         self.y /= _rhs;
@@ -619,6 +655,7 @@ impl ops::DivAssign<Vector2> for Vector2 {
     /// let expected = Vector2::make(0.5, 0.25);
     /// assert_eq!(actual, expected);
     /// ```
+    #[inline]
     fn div_assign(&mut self, _rhs: Vector2) {
         self.x /= _rhs.x;
         self.y /= _rhs.y;
@@ -633,6 +670,7 @@ impl cmp::PartialEq for Vector2 {
     /// use vex::Vector2;
     /// assert!(Vector2::new() == Vector2::new());
     /// ```
+    #[inline]
     fn eq(&self, _rhs: &Vector2) -> bool {
         for i in 0..2 {
             if self[i] != _rhs[i] {
@@ -645,12 +683,14 @@ impl cmp::PartialEq for Vector2 {
 }
 
 impl fmt::Debug for Vector2 {
+    #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.print(f)
     }
 }
 
 impl fmt::Display for Vector2 {
+    #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.print(f)
     }

@@ -1,3 +1,4 @@
+#[inline]
 pub fn is_valid(x: f32) -> bool {
     !(x.is_nan() || x.is_infinite())
 }
@@ -15,6 +16,7 @@ pub fn is_valid(x: f32) -> bool {
 /// let n = next_power_of_two(2);
 /// assert_eq!(n, 4);
 /// ```
+#[inline]
 pub fn next_power_of_two(x: i32) -> i32 {
     let mut r = x;
     r |= r >> 1;
@@ -43,6 +45,7 @@ pub fn next_power_of_two(x: i32) -> i32 {
 /// let n = is_power_of_two(3);
 /// assert_eq!(n, false);
 /// ```
+#[inline]
 pub fn is_power_of_two(x: i32) -> bool {
     x > 0 && (x & (x - 1)) == 0
 }
@@ -60,6 +63,7 @@ pub fn is_power_of_two(x: i32) -> bool {
 /// let mul = sign(-1234.0);
 /// assert_eq!(mul, -1.0);
 /// ```
+#[inline]
 pub fn sign(x: f32) -> f32 {
     if x >= 0.0 {
         1.0
