@@ -5,7 +5,21 @@ use crate::vector4::Vector4;
 
 use std::cmp;
 use std::fmt;
-use std::ops;
+use std::fmt::{Display, Formatter};
+
+use std::ops::{
+    Index,
+    IndexMut,
+    Neg,
+    Add,
+    AddAssign,
+    Sub,
+    SubAssign,
+    Mul,
+    MulAssign,
+    Div,
+    DivAssign,
+};
 
 pub const IDENTITY: Matrix4 = Matrix4 {
     m: [
@@ -1071,7 +1085,7 @@ impl Matrix4 {
     }
 }
 
-impl ops::Neg for Matrix4 {
+impl Neg for Matrix4 {
     type Output = Matrix4;
 
     /// Negates the matrix's elements
@@ -1097,7 +1111,7 @@ impl ops::Neg for Matrix4 {
     }
 }
 
-impl ops::Add<f32> for Matrix4 {
+impl Add<f32> for Matrix4 {
     type Output = Matrix4;
 
     /// Find the resulting matrix by adding a scalar to a matrix's elements
@@ -1123,7 +1137,7 @@ impl ops::Add<f32> for Matrix4 {
     }
 }
 
-impl ops::Add<Matrix4> for Matrix4 {
+impl Add<Matrix4> for Matrix4 {
     type Output = Matrix4;
 
     /// Add two matrices
@@ -1151,7 +1165,7 @@ impl ops::Add<Matrix4> for Matrix4 {
     }
 }
 
-impl ops::AddAssign<f32> for Matrix4 {
+impl AddAssign<f32> for Matrix4 {
     /// Increment a matrix by a scalar
     ///
     /// # Examples
@@ -1172,7 +1186,7 @@ impl ops::AddAssign<f32> for Matrix4 {
     }
 }
 
-impl ops::AddAssign<Matrix4> for Matrix4 {
+impl AddAssign<Matrix4> for Matrix4 {
     /// Increment a matrix by another matrix
     ///
     /// # Examples
@@ -1193,7 +1207,7 @@ impl ops::AddAssign<Matrix4> for Matrix4 {
     }
 }
 
-impl ops::Sub<f32> for Matrix4 {
+impl Sub<f32> for Matrix4 {
     type Output = Matrix4;
 
     /// Find the resulting matrix by subtracting a scalar from a matrix's elements
@@ -1219,7 +1233,7 @@ impl ops::Sub<f32> for Matrix4 {
     }
 }
 
-impl ops::Sub<Matrix4> for Matrix4 {
+impl Sub<Matrix4> for Matrix4 {
     type Output = Matrix4;
 
     /// Subtract two matrices
@@ -1247,7 +1261,7 @@ impl ops::Sub<Matrix4> for Matrix4 {
     }
 }
 
-impl ops::SubAssign<f32> for Matrix4 {
+impl SubAssign<f32> for Matrix4 {
     /// Decrement a matrix by a scalar
     ///
     /// # Examples
@@ -1268,7 +1282,7 @@ impl ops::SubAssign<f32> for Matrix4 {
     }
 }
 
-impl ops::SubAssign<Matrix4> for Matrix4 {
+impl SubAssign<Matrix4> for Matrix4 {
     /// Decrement a matrix by another matrix
     ///
     /// # Examples
@@ -1288,7 +1302,7 @@ impl ops::SubAssign<Matrix4> for Matrix4 {
     }
 }
 
-impl ops::Mul<f32> for Matrix4 {
+impl Mul<f32> for Matrix4 {
     type Output = Matrix4;
 
     /// Find the resulting matrix by multiplying a scalar to a matrix's elements
@@ -1314,7 +1328,7 @@ impl ops::Mul<f32> for Matrix4 {
     }
 }
 
-impl ops::Mul<Matrix4> for Matrix4 {
+impl Mul<Matrix4> for Matrix4 {
     type Output = Matrix4;
 
     /// Multiply two matrices
@@ -1409,7 +1423,7 @@ impl ops::Mul<Matrix4> for Matrix4 {
     }
 }
 
-impl ops::MulAssign<f32> for Matrix4 {
+impl MulAssign<f32> for Matrix4 {
     /// Multiply a matrix by a scalar
     ///
     /// # Examples
@@ -1430,7 +1444,7 @@ impl ops::MulAssign<f32> for Matrix4 {
     }
 }
 
-impl ops::MulAssign<Matrix4> for Matrix4 {
+impl MulAssign<Matrix4> for Matrix4 {
     /// Multiply a matrix by another matrix
     ///
     /// # Examples
@@ -1453,7 +1467,7 @@ impl ops::MulAssign<Matrix4> for Matrix4 {
     }
 }
 
-impl ops::Div<f32> for Matrix4 {
+impl Div<f32> for Matrix4 {
     type Output = Matrix4;
 
     /// Find the resulting matrix by dividing a scalar to a matrix's elements
@@ -1479,7 +1493,7 @@ impl ops::Div<f32> for Matrix4 {
     }
 }
 
-impl ops::DivAssign<f32> for Matrix4 {
+impl DivAssign<f32> for Matrix4 {
     /// Divide a matrix by a scalar
     ///
     /// # Examples
@@ -1522,9 +1536,9 @@ impl cmp::PartialEq for Matrix4 {
     }
 }
 
-impl fmt::Display for Matrix4 {
+impl Display for Matrix4 {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         write!(
             f,
             "[\n  {}, {}, {}, {}\n  {}, {}, {}, {}\n  {}, {}, {}, {}\n  {}, {}, {}, {}\n]",

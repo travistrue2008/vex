@@ -5,7 +5,21 @@ use std::cmp;
 use std::convert::From;
 use std::f32::EPSILON;
 use std::fmt;
-use std::ops;
+use std::fmt::{Display, Formatter};
+
+use std::ops::{
+    Index,
+    IndexMut,
+    Neg,
+    Add,
+    AddAssign,
+    Sub,
+    SubAssign,
+    Mul,
+    MulAssign,
+    Div,
+    DivAssign,
+};
 
 pub const ZERO: Vector4 = Vector4 {
     x: 0.0,
@@ -258,7 +272,7 @@ impl From<Vector3> for Vector4 {
     }
 }
 
-impl ops::Index<u32> for Vector4 {
+impl Index<u32> for Vector4 {
     type Output = f32;
 
     /// Looks up a component by index
@@ -286,7 +300,7 @@ impl ops::Index<u32> for Vector4 {
     }
 }
 
-impl ops::IndexMut<u32> for Vector4 {
+impl IndexMut<u32> for Vector4 {
     /// Mutate a component by index
     ///
     /// # Examples
@@ -316,7 +330,7 @@ impl ops::IndexMut<u32> for Vector4 {
     }
 }
 
-impl ops::Neg for Vector4 {
+impl Neg for Vector4 {
     type Output = Vector4;
 
     /// Negates all components in a vector
@@ -334,7 +348,7 @@ impl ops::Neg for Vector4 {
     }
 }
 
-impl ops::Add<f32> for Vector4 {
+impl Add<f32> for Vector4 {
     type Output = Vector4;
 
     /// Find the resulting vector by adding a scalar to a vector's components
@@ -352,7 +366,7 @@ impl ops::Add<f32> for Vector4 {
     }
 }
 
-impl ops::Add<Vector4> for Vector4 {
+impl Add<Vector4> for Vector4 {
     type Output = Vector4;
 
     /// Add two vectors
@@ -377,7 +391,7 @@ impl ops::Add<Vector4> for Vector4 {
     }
 }
 
-impl ops::AddAssign<f32> for Vector4 {
+impl AddAssign<f32> for Vector4 {
     /// Increment a vector by a scalar
     ///
     /// # Examples
@@ -397,7 +411,7 @@ impl ops::AddAssign<f32> for Vector4 {
     }
 }
 
-impl ops::AddAssign<Vector4> for Vector4 {
+impl AddAssign<Vector4> for Vector4 {
     /// Increment a vector by another vector
     ///
     /// # Examples
@@ -417,7 +431,7 @@ impl ops::AddAssign<Vector4> for Vector4 {
     }
 }
 
-impl ops::Sub<f32> for Vector4 {
+impl Sub<f32> for Vector4 {
     type Output = Vector4;
 
     /// Find the resulting vector by subtracting a scalar from a vector's components
@@ -435,7 +449,7 @@ impl ops::Sub<f32> for Vector4 {
     }
 }
 
-impl ops::Sub<Vector4> for Vector4 {
+impl Sub<Vector4> for Vector4 {
     type Output = Vector4;
 
     /// Subtract two vectors
@@ -460,7 +474,7 @@ impl ops::Sub<Vector4> for Vector4 {
     }
 }
 
-impl ops::SubAssign<f32> for Vector4 {
+impl SubAssign<f32> for Vector4 {
     /// Decrement a vector by a scalar
     ///
     /// # Examples
@@ -480,7 +494,7 @@ impl ops::SubAssign<f32> for Vector4 {
     }
 }
 
-impl ops::SubAssign<Vector4> for Vector4 {
+impl SubAssign<Vector4> for Vector4 {
     /// Decrement a vector by another vector
     ///
     /// # Examples
@@ -499,7 +513,7 @@ impl ops::SubAssign<Vector4> for Vector4 {
     }
 }
 
-impl ops::Mul<f32> for Vector4 {
+impl Mul<f32> for Vector4 {
     type Output = Vector4;
 
     /// Find the resulting vector by multiplying a scalar to a vector's components
@@ -517,7 +531,7 @@ impl ops::Mul<f32> for Vector4 {
     }
 }
 
-impl ops::Mul<Vector4> for Vector4 {
+impl Mul<Vector4> for Vector4 {
     type Output = Vector4;
 
     /// Multiply two vectors
@@ -542,7 +556,7 @@ impl ops::Mul<Vector4> for Vector4 {
     }
 }
 
-impl ops::MulAssign<f32> for Vector4 {
+impl MulAssign<f32> for Vector4 {
     /// Multiply a vector by a scalar
     ///
     /// # Examples
@@ -562,7 +576,7 @@ impl ops::MulAssign<f32> for Vector4 {
     }
 }
 
-impl ops::MulAssign<Vector4> for Vector4 {
+impl MulAssign<Vector4> for Vector4 {
     /// Multiply a vector by another vector
     ///
     /// # Examples
@@ -582,7 +596,7 @@ impl ops::MulAssign<Vector4> for Vector4 {
     }
 }
 
-impl ops::Div<f32> for Vector4 {
+impl Div<f32> for Vector4 {
     type Output = Vector4;
 
     /// Find the resulting vector by dividing a scalar to a vector's components
@@ -600,7 +614,7 @@ impl ops::Div<f32> for Vector4 {
     }
 }
 
-impl ops::Div<Vector4> for Vector4 {
+impl Div<Vector4> for Vector4 {
     type Output = Vector4;
 
     /// Divide two vectors
@@ -625,7 +639,7 @@ impl ops::Div<Vector4> for Vector4 {
     }
 }
 
-impl ops::DivAssign<f32> for Vector4 {
+impl DivAssign<f32> for Vector4 {
     /// Divide a vector by a scalar
     ///
     /// # Examples
@@ -645,7 +659,7 @@ impl ops::DivAssign<f32> for Vector4 {
     }
 }
 
-impl ops::DivAssign<Vector4> for Vector4 {
+impl DivAssign<Vector4> for Vector4 {
     /// Divide a vector by another vector
     ///
     /// # Examples
@@ -685,9 +699,9 @@ impl cmp::PartialEq for Vector4 {
     }
 }
 
-impl fmt::Display for Vector4 {
+impl Display for Vector4 {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        unsafe { write!(f, "<{}, {}, {}, {}>", self.x, self.y, self.z, self.w) }
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        unsafe { write!(f, "<{}  {}  {}  {}>", self.x, self.y, self.z, self.w) }
     }
 }

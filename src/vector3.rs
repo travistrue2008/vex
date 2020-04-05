@@ -6,7 +6,21 @@ use std::cmp;
 use std::convert::From;
 use std::f32::EPSILON;
 use std::fmt;
-use std::ops;
+use std::fmt::{Display, Formatter};
+
+use std::ops::{
+    Index,
+    IndexMut,
+    Neg,
+    Add,
+    AddAssign,
+    Sub,
+    SubAssign,
+    Mul,
+    MulAssign,
+    Div,
+    DivAssign,
+};
 
 pub const ZERO: Vector3 = Vector3 {
     x: 0.0,
@@ -312,7 +326,7 @@ impl From<Vector4> for Vector3 {
     }
 }
 
-impl ops::Index<u32> for Vector3 {
+impl Index<u32> for Vector3 {
     type Output = f32;
 
     /// Looks up a component by index
@@ -338,7 +352,7 @@ impl ops::Index<u32> for Vector3 {
     }
 }
 
-impl ops::IndexMut<u32> for Vector3 {
+impl IndexMut<u32> for Vector3 {
     /// Mutate a component by index
     ///
     /// # Examples
@@ -365,7 +379,7 @@ impl ops::IndexMut<u32> for Vector3 {
     }
 }
 
-impl ops::Neg for Vector3 {
+impl Neg for Vector3 {
     type Output = Vector3;
 
     /// Negates all components in a vector
@@ -383,7 +397,7 @@ impl ops::Neg for Vector3 {
     }
 }
 
-impl ops::Add<f32> for Vector3 {
+impl Add<f32> for Vector3 {
     type Output = Vector3;
 
     /// Find the resulting vector by adding a scalar to a vector's components
@@ -401,7 +415,7 @@ impl ops::Add<f32> for Vector3 {
     }
 }
 
-impl ops::Add<Vector3> for Vector3 {
+impl Add<Vector3> for Vector3 {
     type Output = Vector3;
 
     /// Add two vectors
@@ -421,7 +435,7 @@ impl ops::Add<Vector3> for Vector3 {
     }
 }
 
-impl ops::AddAssign<f32> for Vector3 {
+impl AddAssign<f32> for Vector3 {
     /// Increment a vector by a scalar
     ///
     /// # Examples
@@ -440,7 +454,7 @@ impl ops::AddAssign<f32> for Vector3 {
     }
 }
 
-impl ops::AddAssign<Vector3> for Vector3 {
+impl AddAssign<Vector3> for Vector3 {
     /// Increment a vector by another vector
     ///
     /// # Examples
@@ -459,7 +473,7 @@ impl ops::AddAssign<Vector3> for Vector3 {
     }
 }
 
-impl ops::Sub<f32> for Vector3 {
+impl Sub<f32> for Vector3 {
     type Output = Vector3;
 
     /// Find the resulting vector by subtracting a scalar from a vector's components
@@ -477,7 +491,7 @@ impl ops::Sub<f32> for Vector3 {
     }
 }
 
-impl ops::Sub<Vector3> for Vector3 {
+impl Sub<Vector3> for Vector3 {
     type Output = Vector3;
 
     /// Subtract two vectors
@@ -497,7 +511,7 @@ impl ops::Sub<Vector3> for Vector3 {
     }
 }
 
-impl ops::SubAssign<f32> for Vector3 {
+impl SubAssign<f32> for Vector3 {
     /// Decrement a vector by a scalar
     ///
     /// # Examples
@@ -516,7 +530,7 @@ impl ops::SubAssign<f32> for Vector3 {
     }
 }
 
-impl ops::SubAssign<Vector3> for Vector3 {
+impl SubAssign<Vector3> for Vector3 {
     /// Decrement a vector by another vector
     ///
     /// # Examples
@@ -534,7 +548,7 @@ impl ops::SubAssign<Vector3> for Vector3 {
     }
 }
 
-impl ops::Mul<f32> for Vector3 {
+impl Mul<f32> for Vector3 {
     type Output = Vector3;
 
     /// Find the resulting vector by multiplying a scalar to a vector's components
@@ -552,7 +566,7 @@ impl ops::Mul<f32> for Vector3 {
     }
 }
 
-impl ops::Mul<Vector3> for Vector3 {
+impl Mul<Vector3> for Vector3 {
     type Output = Vector3;
 
     /// Multiply two vectors
@@ -572,7 +586,7 @@ impl ops::Mul<Vector3> for Vector3 {
     }
 }
 
-impl ops::MulAssign<f32> for Vector3 {
+impl MulAssign<f32> for Vector3 {
     /// Multiply a vector by a scalar
     ///
     /// # Examples
@@ -591,7 +605,7 @@ impl ops::MulAssign<f32> for Vector3 {
     }
 }
 
-impl ops::MulAssign<Vector3> for Vector3 {
+impl MulAssign<Vector3> for Vector3 {
     /// Multiply a vector by another vector
     ///
     /// # Examples
@@ -610,7 +624,7 @@ impl ops::MulAssign<Vector3> for Vector3 {
     }
 }
 
-impl ops::Div<f32> for Vector3 {
+impl Div<f32> for Vector3 {
     type Output = Vector3;
 
     /// Find the resulting vector by dividing a scalar to a vector's components
@@ -628,7 +642,7 @@ impl ops::Div<f32> for Vector3 {
     }
 }
 
-impl ops::Div<Vector3> for Vector3 {
+impl Div<Vector3> for Vector3 {
     type Output = Vector3;
 
     /// Divide two vectors
@@ -648,7 +662,7 @@ impl ops::Div<Vector3> for Vector3 {
     }
 }
 
-impl ops::DivAssign<f32> for Vector3 {
+impl DivAssign<f32> for Vector3 {
     /// Divide a vector by a scalar
     ///
     /// # Examples
@@ -667,7 +681,7 @@ impl ops::DivAssign<f32> for Vector3 {
     }
 }
 
-impl ops::DivAssign<Vector3> for Vector3 {
+impl DivAssign<Vector3> for Vector3 {
     /// Divide a vector by another vector
     ///
     /// # Examples
@@ -706,9 +720,9 @@ impl cmp::PartialEq for Vector3 {
     }
 }
 
-impl fmt::Display for Vector3 {
+impl Display for Vector3 {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        unsafe { write!(f, "<{}, {}, {}>", self.x, self.y, self.z) }
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        unsafe { write!(f, "<{}  {}  {}>", self.x, self.y, self.z) }
     }
 }

@@ -5,7 +5,21 @@ use crate::vector3::Vector3;
 
 use std::cmp;
 use std::fmt;
-use std::ops;
+use std::fmt::{Display, Formatter};
+
+use std::ops::{
+    Index,
+    IndexMut,
+    Neg,
+    Add,
+    AddAssign,
+    Sub,
+    SubAssign,
+    Mul,
+    MulAssign,
+    Div,
+    DivAssign,
+};
 
 pub const IDENTITY: Matrix3 = Matrix3 {
     m: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
@@ -454,7 +468,7 @@ impl Matrix3 {
     }
 }
 
-impl ops::Neg for Matrix3 {
+impl Neg for Matrix3 {
     type Output = Matrix3;
 
     /// Negates the matrix's elements
@@ -480,7 +494,7 @@ impl ops::Neg for Matrix3 {
     }
 }
 
-impl ops::Add<f32> for Matrix3 {
+impl Add<f32> for Matrix3 {
     type Output = Matrix3;
 
     /// Find the resulting matrix by adding a scalar to a matrix's elements
@@ -506,7 +520,7 @@ impl ops::Add<f32> for Matrix3 {
     }
 }
 
-impl ops::Add<Matrix3> for Matrix3 {
+impl Add<Matrix3> for Matrix3 {
     type Output = Matrix3;
 
     /// Add two matrices
@@ -534,7 +548,7 @@ impl ops::Add<Matrix3> for Matrix3 {
     }
 }
 
-impl ops::AddAssign<f32> for Matrix3 {
+impl AddAssign<f32> for Matrix3 {
     /// Increment a matrix by a scalar
     ///
     /// # Examples
@@ -555,7 +569,7 @@ impl ops::AddAssign<f32> for Matrix3 {
     }
 }
 
-impl ops::AddAssign<Matrix3> for Matrix3 {
+impl AddAssign<Matrix3> for Matrix3 {
     /// Increment a matrix by another matrix
     ///
     /// # Examples
@@ -576,7 +590,7 @@ impl ops::AddAssign<Matrix3> for Matrix3 {
     }
 }
 
-impl ops::Sub<f32> for Matrix3 {
+impl Sub<f32> for Matrix3 {
     type Output = Matrix3;
 
     /// Find the resulting matrix by subtracting a scalar from a matrix's elements
@@ -602,7 +616,7 @@ impl ops::Sub<f32> for Matrix3 {
     }
 }
 
-impl ops::Sub<Matrix3> for Matrix3 {
+impl Sub<Matrix3> for Matrix3 {
     type Output = Matrix3;
 
     /// Subtract two matrices
@@ -630,7 +644,7 @@ impl ops::Sub<Matrix3> for Matrix3 {
     }
 }
 
-impl ops::SubAssign<f32> for Matrix3 {
+impl SubAssign<f32> for Matrix3 {
     /// Decrement a matrix by a scalar
     ///
     /// # Examples
@@ -651,7 +665,7 @@ impl ops::SubAssign<f32> for Matrix3 {
     }
 }
 
-impl ops::SubAssign<Matrix3> for Matrix3 {
+impl SubAssign<Matrix3> for Matrix3 {
     /// Decrement a matrix by another matrix
     ///
     /// # Examples
@@ -671,7 +685,7 @@ impl ops::SubAssign<Matrix3> for Matrix3 {
     }
 }
 
-impl ops::Mul<f32> for Matrix3 {
+impl Mul<f32> for Matrix3 {
     type Output = Matrix3;
 
     /// Find the resulting matrix by multiplying a scalar to a matrix's elements
@@ -697,7 +711,7 @@ impl ops::Mul<f32> for Matrix3 {
     }
 }
 
-impl ops::Mul<Matrix3> for Matrix3 {
+impl Mul<Matrix3> for Matrix3 {
     type Output = Matrix3;
 
     /// Multiply two matrices
@@ -726,7 +740,7 @@ impl ops::Mul<Matrix3> for Matrix3 {
     }
 }
 
-impl ops::MulAssign<f32> for Matrix3 {
+impl MulAssign<f32> for Matrix3 {
     /// Multiply a matrix by a scalar
     ///
     /// # Examples
@@ -747,7 +761,7 @@ impl ops::MulAssign<f32> for Matrix3 {
     }
 }
 
-impl ops::MulAssign<Matrix3> for Matrix3 {
+impl MulAssign<Matrix3> for Matrix3 {
     /// Multiply a matrix by another matrix
     ///
     /// # Examples
@@ -765,7 +779,7 @@ impl ops::MulAssign<Matrix3> for Matrix3 {
     }
 }
 
-impl ops::Div<f32> for Matrix3 {
+impl Div<f32> for Matrix3 {
     type Output = Matrix3;
 
     /// Find the resulting matrix by dividing a scalar to a matrix's elements
@@ -791,7 +805,7 @@ impl ops::Div<f32> for Matrix3 {
     }
 }
 
-impl ops::DivAssign<f32> for Matrix3 {
+impl DivAssign<f32> for Matrix3 {
     /// Divide a matrix by a scalar
     ///
     /// # Examples
@@ -834,9 +848,9 @@ impl cmp::PartialEq for Matrix3 {
     }
 }
 
-impl fmt::Display for Matrix3 {
+impl Display for Matrix3 {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         write!(
             f,
             "[\n  {}, {}, {}\n  {}, {}, {}\n  {}, {}, {}\n]",
