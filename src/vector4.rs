@@ -22,7 +22,7 @@ pub const ONE: Vector4 = Vector4 {
 };
 
 #[repr(C, packed)]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Vector4 {
     pub x: f32,
     pub y: f32,
@@ -150,13 +150,13 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).magnitude();
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).mag();
     /// let expected = 5.47722557505;
     /// assert_eq!(actual, expected);
     /// ```
     #[inline]
-    pub fn magnitude(&self) -> f32 {
-        self.magnitude_squared().sqrt()
+    pub fn mag(&self) -> f32 {
+        self.mag_sq().sqrt()
     }
 
     /// Get the squared magnitude of the vector
@@ -164,12 +164,12 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
-    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).magnitude_squared();
+    /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).mag_sq();
     /// let expected = 30.0;
     /// assert_eq!(actual, expected);
     /// ```
     #[inline]
-    pub fn magnitude_squared(&self) -> f32 {
+    pub fn mag_sq(&self) -> f32 {
         self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w
     }
 
@@ -179,13 +179,13 @@ impl Vector4 {
     /// ```
     /// use vex::Vector4;
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
-    /// actual.normalize();
+    /// actual.norm();
     /// let expected = Vector4::make(0.18257418, 0.36514837, 0.5477225, 0.73029673);
     /// assert_eq!(actual, expected);
     /// ```
     #[inline]
-    pub fn normalize(&mut self) -> f32 {
-        let length = self.magnitude();
+    pub fn norm(&mut self) -> f32 {
+        let length = self.mag();
         if length > EPSILON {
             self.x /= length;
             self.y /= length;
@@ -233,11 +233,6 @@ impl Vector4 {
 
         true
     }
-
-    #[inline]
-    fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        unsafe { write!(f, "<{}, {}, {}, {}>", self.x, self.y, self.z, self.w) }
-    }
 }
 
 impl From<Vector3> for Vector4 {
@@ -279,15 +274,15 @@ impl ops::Index<u32> for Vector4 {
     /// ```
     #[inline]
     fn index(&self, index: u32) -> &f32 {
-		unsafe {
-			match index {
-				0 => &self.x,
-				1 => &self.y,
-				2 => &self.z,
-				3 => &self.w,
-				_ => panic!("Invalid index for Vector4: {}", index),
-			}
-		}
+        unsafe {
+            match index {
+                0 => &self.x,
+                1 => &self.y,
+                2 => &self.z,
+                3 => &self.w,
+                _ => panic!("Invalid index for Vector4: {}", index),
+            }
+        }
     }
 }
 
@@ -309,15 +304,15 @@ impl ops::IndexMut<u32> for Vector4 {
     /// ```
     #[inline]
     fn index_mut<'a>(&'a mut self, index: u32) -> &'a mut f32 {
-		unsafe {
-			match index {
-				0 => &mut self.x,
-				1 => &mut self.y,
-				2 => &mut self.z,
-				3 => &mut self.w,
-				_ => panic!("Invalid index for Vector4: {}", index),
-			}
-		}
+        unsafe {
+            match index {
+                0 => &mut self.x,
+                1 => &mut self.y,
+                2 => &mut self.z,
+                3 => &mut self.w,
+                _ => panic!("Invalid index for Vector4: {}", index),
+            }
+        }
     }
 }
 
@@ -690,16 +685,9 @@ impl cmp::PartialEq for Vector4 {
     }
 }
 
-impl fmt::Debug for Vector4 {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
-    }
-}
-
 impl fmt::Display for Vector4 {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
+        unsafe { write!(f, "<{}, {}, {}, {}>", self.x, self.y, self.z, self.w) }
     }
 }

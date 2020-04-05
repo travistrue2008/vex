@@ -11,8 +11,8 @@ pub const IDENTITY: Matrix3 = Matrix3 {
     m: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
 };
 
-// #[repr(C, packed)]
-#[derive(Copy, Clone)]
+#[repr(C, packed)]
+#[derive(Copy, Clone, Debug)]
 pub struct Matrix3 {
     pub m: [f32; 9],
 }
@@ -39,7 +39,7 @@ impl Matrix3 {
     /// use vex::Matrix3;
     /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     /// let expected = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn make(
@@ -183,7 +183,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m11(1.0);
     /// let expected = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m11(&mut self, v: f32) {
@@ -198,7 +198,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m21(1.0);
     /// let expected = [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m21(&mut self, v: f32) {
@@ -213,7 +213,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m31(1.0);
     /// let expected = [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m31(&mut self, v: f32) {
@@ -228,7 +228,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m12(1.0);
     /// let expected = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m12(&mut self, v: f32) {
@@ -243,7 +243,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m22(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m22(&mut self, v: f32) {
@@ -258,7 +258,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m32(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m32(&mut self, v: f32) {
@@ -273,7 +273,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m13(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m13(&mut self, v: f32) {
@@ -288,7 +288,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m23(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m23(&mut self, v: f32) {
@@ -303,7 +303,7 @@ impl Matrix3 {
     /// let mut actual = Matrix3::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m33(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m33(&mut self, v: f32) {
@@ -452,23 +452,6 @@ impl Matrix3 {
 
         true
     }
-
-    #[inline]
-    fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "[\n  {}, {}, {}\n  {}, {}, {}\n  {}, {}, {}\n]",
-            self.m11(),
-            self.m12(),
-            self.m13(),
-            self.m21(),
-            self.m22(),
-            self.m23(),
-            self.m31(),
-            self.m32(),
-            self.m33(),
-        )
-    }
 }
 
 impl ops::Neg for Matrix3 {
@@ -486,8 +469,11 @@ impl ops::Neg for Matrix3 {
     #[inline]
     fn neg(self) -> Matrix3 {
         let mut m = [0.0; 9];
-        for (i, elem) in self.m.iter().enumerate() {
-            m[i] = -*elem;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                m[i] = -*elem;
+            }
         }
 
         Matrix3 { m }
@@ -509,8 +495,11 @@ impl ops::Add<f32> for Matrix3 {
     #[inline]
     fn add(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem + _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem + _rhs;
+            }
         }
 
         mat
@@ -534,8 +523,11 @@ impl ops::Add<Matrix3> for Matrix3 {
     #[inline]
     fn add(self, _rhs: Matrix3) -> Matrix3 {
         let mut mat = Matrix3::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem + _rhs.m[i];
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem + _rhs.m[i];
+            }
         }
 
         mat
@@ -555,8 +547,10 @@ impl ops::AddAssign<f32> for Matrix3 {
     /// ```
     #[inline]
     fn add_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem += _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem += _rhs;
+            }
         }
     }
 }
@@ -574,8 +568,10 @@ impl ops::AddAssign<Matrix3> for Matrix3 {
     /// ```
     #[inline]
     fn add_assign(&mut self, _rhs: Matrix3) {
-        for (i, elem) in self.m.iter_mut().enumerate() {
-            *elem += _rhs.m[i];
+        unsafe {
+            for (i, elem) in self.m.iter_mut().enumerate() {
+                *elem += _rhs.m[i];
+            }
         }
     }
 }
@@ -595,8 +591,11 @@ impl ops::Sub<f32> for Matrix3 {
     #[inline]
     fn sub(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem - _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem - _rhs;
+            }
         }
 
         mat
@@ -620,8 +619,11 @@ impl ops::Sub<Matrix3> for Matrix3 {
     #[inline]
     fn sub(self, _rhs: Matrix3) -> Matrix3 {
         let mut mat = Matrix3::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem - _rhs.m[i];
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem - _rhs.m[i];
+            }
         }
 
         mat
@@ -641,8 +643,10 @@ impl ops::SubAssign<f32> for Matrix3 {
     /// ```
     #[inline]
     fn sub_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem -= _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem -= _rhs;
+            }
         }
     }
 }
@@ -659,8 +663,10 @@ impl ops::SubAssign<Matrix3> for Matrix3 {
     /// ```
     #[inline]
     fn sub_assign(&mut self, _rhs: Matrix3) {
-        for (i, elem) in self.m.iter_mut().enumerate() {
-            *elem -= _rhs.m[i];
+        unsafe {
+            for (i, elem) in self.m.iter_mut().enumerate() {
+                *elem -= _rhs.m[i];
+            }
         }
     }
 }
@@ -680,8 +686,11 @@ impl ops::Mul<f32> for Matrix3 {
     #[inline]
     fn mul(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem * _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem * _rhs;
+            }
         }
 
         mat
@@ -730,8 +739,10 @@ impl ops::MulAssign<f32> for Matrix3 {
     /// ```
     #[inline]
     fn mul_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem *= _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem *= _rhs;
+            }
         }
     }
 }
@@ -769,8 +780,11 @@ impl ops::Div<f32> for Matrix3 {
     #[inline]
     fn div(self, _rhs: f32) -> Matrix3 {
         let mut mat = Matrix3::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem / _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem / _rhs;
+            }
         }
 
         mat
@@ -790,8 +804,10 @@ impl ops::DivAssign<f32> for Matrix3 {
     /// ```
     #[inline]
     fn div_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem /= _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem /= _rhs;
+            }
         }
     }
 }
@@ -806,9 +822,11 @@ impl cmp::PartialEq for Matrix3 {
     /// ```
     #[inline]
     fn eq(&self, _rhs: &Matrix3) -> bool {
-        for (i, elem) in self.m.iter().enumerate() {
-            if *elem != _rhs.m[i] {
-                return false;
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                if *elem != _rhs.m[i] {
+                    return false;
+                }
             }
         }
 
@@ -816,17 +834,22 @@ impl cmp::PartialEq for Matrix3 {
     }
 }
 
-impl fmt::Debug for Matrix3 {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
-    }
-}
-
 impl fmt::Display for Matrix3 {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
+        write!(
+            f,
+            "[\n  {}, {}, {}\n  {}, {}, {}\n  {}, {}, {}\n]",
+            self.m11(),
+            self.m12(),
+            self.m13(),
+            self.m21(),
+            self.m22(),
+            self.m23(),
+            self.m31(),
+            self.m32(),
+            self.m33(),
+        )
     }
 }
 

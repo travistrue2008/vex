@@ -11,7 +11,7 @@ pub const ZERO: Vector2 = Vector2 { x: 0.0, y: 0.0 };
 pub const ONE: Vector2 = Vector2 { x: 1.0, y: 1.0 };
 
 #[repr(C, packed)]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Vector2 {
     pub x: f32,
     pub y: f32,
@@ -183,13 +183,13 @@ impl Vector2 {
     /// # Examples
     /// ```
     /// use vex::Vector2;
-    /// let actual = Vector2::make(1.0, 2.0).magnitude();
+    /// let actual = Vector2::make(1.0, 2.0).mag();
     /// let expected = 2.2360679775;
     /// assert_eq!(actual, expected);
     /// ```
     #[inline]
-    pub fn magnitude(&self) -> f32 {
-        self.magnitude_squared().sqrt()
+    pub fn mag(&self) -> f32 {
+        self.mag_sq().sqrt()
     }
 
     /// Get the squared magnitude of the vector
@@ -197,12 +197,12 @@ impl Vector2 {
     /// # Examples
     /// ```
     /// use vex::Vector2;
-    /// let actual = Vector2::make(1.0, 2.0).magnitude_squared();
+    /// let actual = Vector2::make(1.0, 2.0).mag_sq();
     /// let expected = 5.0;
     /// assert_eq!(actual, expected);
     /// ```
     #[inline]
-    pub fn magnitude_squared(&self) -> f32 {
+    pub fn mag_sq(&self) -> f32 {
         self.x * self.x + self.y * self.y
     }
 
@@ -212,13 +212,13 @@ impl Vector2 {
     /// ```
     /// use vex::Vector2;
     /// let mut actual = Vector2::make(1.0, 2.0);
-    /// actual.normalize();
+    /// actual.norm();
     /// let expected = Vector2::make(0.4472135955, 0.894427191);
     /// assert_eq!(actual, expected);
     /// ```
     #[inline]
-    pub fn normalize(&mut self) -> f32 {
-        let length = self.magnitude();
+    pub fn norm(&mut self) -> f32 {
+        let length = self.mag();
         if length > EPSILON {
             self.x /= length;
             self.y /= length;
@@ -278,11 +278,6 @@ impl Vector2 {
         }
 
         true
-    }
-
-    #[inline]
-    fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        unsafe { write!(f, "<{}, {}>", self.x, self.y) }
     }
 }
 
@@ -345,13 +340,13 @@ impl ops::IndexMut<u32> for Vector2 {
     /// ```
     #[inline]
     fn index_mut<'a>(&'a mut self, index: u32) -> &'a mut f32 {
-		unsafe {
-			match index {
-				0 => &mut self.x,
-				1 => &mut self.y,
-				_ => panic!("Invalid index for Vector2: {}", index),
-			}
-		}
+        unsafe {
+            match index {
+                0 => &mut self.x,
+                1 => &mut self.y,
+                _ => panic!("Invalid index for Vector2: {}", index),
+            }
+        }
     }
 }
 
@@ -688,16 +683,9 @@ impl cmp::PartialEq for Vector2 {
     }
 }
 
-impl fmt::Debug for Vector2 {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
-    }
-}
-
 impl fmt::Display for Vector2 {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
+        unsafe { write!(f, "<{}, {}>", self.x, self.y) }
     }
 }

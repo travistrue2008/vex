@@ -9,8 +9,8 @@ pub const IDENTITY: Matrix2 = Matrix2 {
     m: [1.0, 0.0, 0.0, 1.0],
 };
 
-// #[repr(C, packed)]
-#[derive(Copy, Clone)]
+#[repr(C, packed)]
+#[derive(Copy, Clone, Debug)]
 pub struct Matrix2 {
     pub m: [f32; 4],
 }
@@ -37,7 +37,7 @@ impl Matrix2 {
     /// use vex::Matrix2;
     /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
     /// let expected = [1.0, 2.0, 3.0, 4.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn make(m11: f32, m21: f32, m12: f32, m22: f32) -> Matrix2 {
@@ -106,7 +106,7 @@ impl Matrix2 {
     /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m11(1.0);
     /// let expected = [1.0, 0.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m11(&mut self, v: f32) {
@@ -121,7 +121,7 @@ impl Matrix2 {
     /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m21(1.0);
     /// let expected = [0.0, 1.0, 0.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m21(&mut self, v: f32) {
@@ -136,7 +136,7 @@ impl Matrix2 {
     /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m12(1.0);
     /// let expected = [0.0, 0.0, 1.0, 0.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m12(&mut self, v: f32) {
@@ -151,7 +151,7 @@ impl Matrix2 {
     /// let mut actual = Matrix2::make(0.0, 0.0, 0.0, 0.0);
     /// actual.set_m22(1.0);
     /// let expected = [0.0, 0.0, 0.0, 1.0];
-    /// assert_eq!(actual.m(), expected);
+    /// assert_eq!(actual.m, expected);
     /// ```
     #[inline]
     pub fn set_m22(&mut self, v: f32) {
@@ -254,18 +254,6 @@ impl Matrix2 {
 
         true
     }
-
-    #[inline]
-    fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "[\n  {}, {}\n  {}, {}\n]",
-            self.m11(),
-            self.m12(),
-            self.m21(),
-            self.m22()
-        )
-    }
 }
 
 impl ops::Neg for Matrix2 {
@@ -283,8 +271,11 @@ impl ops::Neg for Matrix2 {
     #[inline]
     fn neg(self) -> Matrix2 {
         let mut m = [0.0; 4];
-        for (i, elem) in self.m.iter().enumerate() {
-            m[i] = -*elem;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                m[i] = -*elem;
+            }
         }
 
         Matrix2 { m }
@@ -306,8 +297,11 @@ impl ops::Add<f32> for Matrix2 {
     #[inline]
     fn add(self, _rhs: f32) -> Matrix2 {
         let mut mat = Matrix2::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem + _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem + _rhs;
+            }
         }
 
         mat
@@ -331,8 +325,11 @@ impl ops::Add<Matrix2> for Matrix2 {
     #[inline]
     fn add(self, _rhs: Matrix2) -> Matrix2 {
         let mut mat = Matrix2::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem + _rhs.m[i];
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem + _rhs.m[i];
+            }
         }
 
         mat
@@ -352,8 +349,10 @@ impl ops::AddAssign<f32> for Matrix2 {
     /// ```
     #[inline]
     fn add_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem += _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem += _rhs;
+            }
         }
     }
 }
@@ -371,8 +370,10 @@ impl ops::AddAssign<Matrix2> for Matrix2 {
     /// ```
     #[inline]
     fn add_assign(&mut self, _rhs: Matrix2) {
-        for (i, elem) in self.m.iter_mut().enumerate() {
-            *elem += _rhs.m[i];
+        unsafe {
+            for (i, elem) in self.m.iter_mut().enumerate() {
+                *elem += _rhs.m[i];
+            }
         }
     }
 }
@@ -392,8 +393,11 @@ impl ops::Sub<f32> for Matrix2 {
     #[inline]
     fn sub(self, _rhs: f32) -> Matrix2 {
         let mut mat = Matrix2::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem - _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem - _rhs;
+            }
         }
 
         mat
@@ -417,8 +421,11 @@ impl ops::Sub<Matrix2> for Matrix2 {
     #[inline]
     fn sub(self, _rhs: Matrix2) -> Matrix2 {
         let mut mat = Matrix2::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem - _rhs.m[i];
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem - _rhs.m[i];
+            }
         }
 
         mat
@@ -438,8 +445,10 @@ impl ops::SubAssign<f32> for Matrix2 {
     /// ```
     #[inline]
     fn sub_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem -= _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem -= _rhs;
+            }
         }
     }
 }
@@ -456,8 +465,10 @@ impl ops::SubAssign<Matrix2> for Matrix2 {
     /// ```
     #[inline]
     fn sub_assign(&mut self, _rhs: Matrix2) {
-        for (i, elem) in self.m.iter_mut().enumerate() {
-            *elem -= _rhs.m[i];
+        unsafe {
+            for (i, elem) in self.m.iter_mut().enumerate() {
+                *elem -= _rhs.m[i];
+            }
         }
     }
 }
@@ -477,8 +488,11 @@ impl ops::Mul<f32> for Matrix2 {
     #[inline]
     fn mul(self, _rhs: f32) -> Matrix2 {
         let mut mat = Matrix2::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem * _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem * _rhs;
+            }
         }
 
         mat
@@ -522,8 +536,10 @@ impl ops::MulAssign<f32> for Matrix2 {
     /// ```
     #[inline]
     fn mul_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem *= _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem *= _rhs;
+            }
         }
     }
 }
@@ -561,8 +577,11 @@ impl ops::Div<f32> for Matrix2 {
     #[inline]
     fn div(self, _rhs: f32) -> Matrix2 {
         let mut mat = Matrix2::new();
-        for (i, elem) in self.m.iter().enumerate() {
-            mat.m[i] = *elem / _rhs;
+
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                mat.m[i] = *elem / _rhs;
+            }
         }
 
         mat
@@ -582,8 +601,10 @@ impl ops::DivAssign<f32> for Matrix2 {
     /// ```
     #[inline]
     fn div_assign(&mut self, _rhs: f32) {
-        for elem in self.m.iter_mut() {
-            *elem /= _rhs;
+        unsafe {
+            for elem in self.m.iter_mut() {
+                *elem /= _rhs;
+            }
         }
     }
 }
@@ -599,9 +620,11 @@ impl cmp::PartialEq for Matrix2 {
     /// ```
     #[inline]
     fn eq(&self, _rhs: &Matrix2) -> bool {
-        for (i, elem) in self.m.iter().enumerate() {
-            if *elem != _rhs.m[i] {
-                return false;
+        unsafe {
+            for (i, elem) in self.m.iter().enumerate() {
+                if *elem != _rhs.m[i] {
+                    return false;
+                }
             }
         }
 
@@ -609,17 +632,17 @@ impl cmp::PartialEq for Matrix2 {
     }
 }
 
-impl fmt::Debug for Matrix2 {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
-    }
-}
-
 impl fmt::Display for Matrix2 {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        self.print(f)
+        write!(
+            f,
+            "[\n  {}, {}\n  {}, {}\n]",
+            self.m11(),
+            self.m12(),
+            self.m21(),
+            self.m22()
+        )
     }
 }
 
