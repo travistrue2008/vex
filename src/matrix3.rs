@@ -1,7 +1,8 @@
-use super::common;
-use super::matrix2::Matrix2;
-use super::vector2::Vector2;
-use super::vector3::Vector3;
+use crate::common;
+use crate::matrix2::Matrix2;
+use crate::vector2::Vector2;
+use crate::vector3::Vector3;
+
 use std::cmp;
 use std::fmt;
 use std::ops;
@@ -10,9 +11,10 @@ pub const IDENTITY: Matrix3 = Matrix3 {
     m: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
 };
 
+// #[repr(C, packed)]
 #[derive(Copy, Clone)]
 pub struct Matrix3 {
-    m: [f32; 9],
+    pub m: [f32; 9],
 }
 
 impl Matrix3 {
@@ -171,20 +173,6 @@ impl Matrix3 {
     #[inline]
     pub fn m33(&self) -> f32 {
         self.m[8]
-    }
-
-    /// Gets the internal contents of the matrix
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Matrix3;
-    /// let actual = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
-    /// let expected = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0];
-    /// assert_eq!(actual.m(), expected);
-    /// ```
-    #[inline]
-    pub fn m(&self) -> [f32; 9] {
-        self.m
     }
 
     /// Sets the value for the m11 element

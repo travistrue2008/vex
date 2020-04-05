@@ -1,6 +1,7 @@
-use super::common;
-use super::vector2::Vector2;
-use super::vector4::Vector4;
+use crate::common;
+use crate::vector2::Vector2;
+use crate::vector4::Vector4;
+
 use std::cmp;
 use std::convert::From;
 use std::f32::EPSILON;
@@ -37,6 +38,7 @@ pub const FORWARD: Vector3 = Vector3 {
     z: -1.0,
 };
 
+#[repr(C, packed)]
 #[derive(Copy, Clone)]
 pub struct Vector3 {
     pub x: f32,
@@ -267,7 +269,7 @@ impl Vector3 {
 
     #[inline]
     fn print(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "<{}, {}, {}>", self.x, self.y, self.z)
+		unsafe { write!(f, "<{}, {}, {}>", self.x, self.y, self.z) }
     }
 }
 
@@ -330,12 +332,14 @@ impl ops::Index<u32> for Vector3 {
     /// ```
     #[inline]
     fn index(&self, index: u32) -> &f32 {
-        match index {
-            0 => &self.x,
-            1 => &self.y,
-            2 => &self.z,
-            _ => panic!("Invalid index for Vector3: {}", index),
-        }
+		unsafe {
+			match index {
+				0 => &self.x,
+				1 => &self.y,
+				2 => &self.z,
+				_ => panic!("Invalid index for Vector3: {}", index),
+			}
+		}
     }
 }
 
@@ -355,12 +359,14 @@ impl ops::IndexMut<u32> for Vector3 {
     /// ```
     #[inline]
     fn index_mut<'a>(&'a mut self, index: u32) -> &'a mut f32 {
-        match index {
-            0 => &mut self.x,
-            1 => &mut self.y,
-            2 => &mut self.z,
-            _ => panic!("Invalid index for Vector3: {}", index),
-        }
+		unsafe {
+			match index {
+				0 => &mut self.x,
+				1 => &mut self.y,
+				2 => &mut self.z,
+				_ => panic!("Invalid index for Vector3: {}", index),
+			}
+		}
     }
 }
 

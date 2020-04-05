@@ -1,7 +1,8 @@
-use super::common;
-use super::matrix3::Matrix3;
-use super::vector3::Vector3;
-use super::vector4::Vector4;
+use crate::common;
+use crate::matrix3::Matrix3;
+use crate::vector3::Vector3;
+use crate::vector4::Vector4;
+
 use std::cmp;
 use std::fmt;
 use std::ops;
@@ -12,6 +13,7 @@ pub const IDENTITY: Matrix4 = Matrix4 {
     ],
 };
 
+// #[repr(C, packed)]
 #[derive(Copy, Clone)]
 pub struct Matrix4 {
     m: [f32; 16],
@@ -514,20 +516,6 @@ impl Matrix4 {
         self.m[15]
     }
 
-    /// Gets the internal contents of the matrix
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Matrix4;
-    /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
-    /// let expected = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0];
-    /// assert_eq!(actual.m(), expected);
-    /// ```
-    #[inline]
-    pub fn m(&self) -> [f32; 16] {
-        self.m
-    }
-
     /// Sets the value for the m11 element
     ///
     /// # Examples
@@ -871,8 +859,10 @@ impl Matrix4 {
             self.m42(),
             self.m43(),
             self.m44(),
-        ).determinant()
+        )
+        .determinant()
             * self.m11();
+
         let b = Matrix3::make(
             self.m21(),
             self.m23(),
@@ -883,8 +873,10 @@ impl Matrix4 {
             self.m41(),
             self.m43(),
             self.m44(),
-        ).determinant()
+        )
+        .determinant()
             * self.m12();
+
         let c = Matrix3::make(
             self.m21(),
             self.m22(),
@@ -895,8 +887,10 @@ impl Matrix4 {
             self.m41(),
             self.m42(),
             self.m44(),
-        ).determinant()
+        )
+        .determinant()
             * self.m13();
+
         let d = Matrix3::make(
             self.m21(),
             self.m22(),
@@ -907,7 +901,8 @@ impl Matrix4 {
             self.m41(),
             self.m42(),
             self.m43(),
-        ).determinant()
+        )
+        .determinant()
             * self.m14();
 
         a - b + c - d

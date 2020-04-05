@@ -1,5 +1,6 @@
-use super::common;
-use super::vector2::Vector2;
+use crate::common;
+use crate::vector2::Vector2;
+
 use std::cmp;
 use std::fmt;
 use std::ops;
@@ -8,9 +9,10 @@ pub const IDENTITY: Matrix2 = Matrix2 {
     m: [1.0, 0.0, 0.0, 1.0],
 };
 
+// #[repr(C, packed)]
 #[derive(Copy, Clone)]
 pub struct Matrix2 {
-    m: [f32; 4],
+    pub m: [f32; 4],
 }
 
 impl Matrix2 {
@@ -94,20 +96,6 @@ impl Matrix2 {
     #[inline]
     pub fn m22(&self) -> f32 {
         self.m[3]
-    }
-
-    /// Gets the internal contents of the matrix
-    ///
-    /// # Examples
-    /// ```
-    /// use vex::Matrix2;
-    /// let actual = Matrix2::make(1.0, 2.0, 3.0, 4.0);
-    /// let expected = [1.0, 2.0, 3.0, 4.0];
-    /// assert_eq!(actual.m(), expected);
-    /// ```
-    #[inline]
-    pub fn m(&self) -> [f32; 4] {
-        self.m
     }
 
     /// Sets the value for the m11 element
