@@ -1,6 +1,6 @@
 [package]
 name = "vex"
-version = "2.0.0"
+version = "2.0.1"
 license = "MIT"
 repository = "https://github.com/travistrue2008/vex"
 authors = ["Travis J True <travis@truesoftent.com>"]
