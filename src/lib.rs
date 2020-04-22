@@ -5,10 +5,10 @@ pub use vector2::Vector2;
 pub use vector3::Vector3;
 pub use vector4::Vector4;
 
-pub mod common;
-pub mod matrix2;
-pub mod matrix3;
-pub mod matrix4;
-pub mod vector2;
-pub mod vector3;
-pub mod vector4;
+pub mod common::*;
+pub mod matrix2::*;
+pub mod matrix3::*;
+pub mod matrix4::*;
+pub mod vector2::*;
+pub mod vector3::*;
+pub mod vector4::*;
