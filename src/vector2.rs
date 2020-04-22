@@ -21,9 +21,6 @@ use std::ops::{
     DivAssign,
 };
 
-pub const ZERO: Vector2 = Vector2 { x: 0.0, y: 0.0 };
-pub const ONE: Vector2 = Vector2 { x: 1.0, y: 1.0 };
-
 #[repr(C, packed)]
 #[derive(Copy, Clone, Debug)]
 pub struct Vector2 {
@@ -43,7 +40,21 @@ impl Vector2 {
     /// ```
     #[inline]
     pub fn new() -> Vector2 {
-        ZERO
+        Vector2 { x: 0.0, y: 0.0 }
+    }
+
+    /// Creates a vector <1.0, 1.0>
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vector2;
+    /// let actual = Vector2::one();
+    /// let expected = Vector2 { x: 1.0, y: 1.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    #[inline]
+    pub fn one() -> Vector2 {
+        Vector2 { x: 1.0, y: 1.0 }
     }
 
     /// Creates a vector from the provided values

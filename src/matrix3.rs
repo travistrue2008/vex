@@ -8,8 +8,6 @@ use std::fmt;
 use std::fmt::{Display, Formatter};
 
 use std::ops::{
-    Index,
-    IndexMut,
     Neg,
     Add,
     AddAssign,
@@ -21,9 +19,6 @@ use std::ops::{
     DivAssign,
 };
 
-pub const IDENTITY: Matrix3 = Matrix3 {
-    m: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
-};
 
 #[repr(C, packed)]
 #[derive(Copy, Clone, Debug)]
@@ -37,13 +32,24 @@ impl Matrix3 {
     /// # Examples
     /// ```
     /// use vex::Matrix3;
-    /// use vex::matrix3::IDENTITY;
     /// let actual = Matrix3::new();
-    /// assert_eq!(actual, IDENTITY);
+    /// assert_eq!(actual, Matrix3 {
+    ///     m: [
+    ///         1.0, 0.0, 0.0,
+    ///         0.0, 1.0, 0.0,
+    ///         0.0, 0.0, 1.0,
+    ///     ],
+    /// });
     /// ```
     #[inline]
     pub fn new() -> Matrix3 {
-        IDENTITY
+        Matrix3 {
+            m: [
+                1.0, 0.0, 0.0,
+                0.0, 1.0, 0.0,
+                0.0, 0.0, 1.0,
+            ],
+        }
     }
 
     /// Creates a matrix from the provided values
@@ -872,7 +878,7 @@ impl common::TransformPoint<Vector2> for Matrix3 {
     ///
     /// # Examples
     /// ```
-    /// use vex::common::TransformPoint;
+    /// use vex::TransformPoint;
     /// use vex::Matrix3;
     /// use vex::Vector2;
     /// let m = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
@@ -895,7 +901,7 @@ impl common::TransformPoint<Vector3> for Matrix3 {
     ///
     /// # Examples
     /// ```
-    /// use vex::common::TransformPoint;
+    /// use vex::TransformPoint;
     /// use vex::Matrix3;
     /// use vex::Vector3;
     /// let m = Matrix3::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);

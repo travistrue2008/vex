@@ -6,8 +6,6 @@ use std::fmt;
 use std::fmt::{Display, Formatter};
 
 use std::ops::{
-    Index,
-    IndexMut,
     Neg,
     Add,
     AddAssign,
@@ -17,10 +15,6 @@ use std::ops::{
     MulAssign,
     Div,
     DivAssign,
-};
-
-pub const IDENTITY: Matrix2 = Matrix2 {
-    m: [1.0, 0.0, 0.0, 1.0],
 };
 
 #[repr(C, packed)]
@@ -35,13 +29,20 @@ impl Matrix2 {
     /// # Examples
     /// ```
     /// use vex::Matrix2;
-    /// use vex::matrix2::IDENTITY;
     /// let actual = Matrix2::new();
-    /// assert_eq!(actual, IDENTITY);
+    /// assert_eq!(actual.m, [
+    ///     1.0, 0.0,
+    ///     0.0, 1.0,
+    /// ]);
     /// ```
     #[inline]
     pub fn new() -> Matrix2 {
-        IDENTITY
+        Matrix2 {
+            m: [
+                1.0, 0.0,
+                0.0, 1.0,
+            ],
+        }
     }
 
     /// Creates a matrix from the provided values
@@ -665,7 +666,7 @@ impl common::TransformPoint<Vector2> for Matrix2 {
     ///
     /// # Examples
     /// ```
-    /// use vex::common::TransformPoint;
+    /// use vex::TransformPoint;
     /// use vex::Matrix2;
     /// use vex::Vector2;
     ///

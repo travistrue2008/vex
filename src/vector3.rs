@@ -22,36 +22,6 @@ use std::ops::{
     DivAssign,
 };
 
-pub const ZERO: Vector3 = Vector3 {
-    x: 0.0,
-    y: 0.0,
-    z: 0.0,
-};
-
-pub const ONE: Vector3 = Vector3 {
-    x: 1.0,
-    y: 1.0,
-    z: 1.0,
-};
-
-pub const RIGHT: Vector3 = Vector3 {
-    x: 1.0,
-    y: 0.0,
-    z: 0.0,
-};
-
-pub const UP: Vector3 = Vector3 {
-    x: 0.0,
-    y: 1.0,
-    z: 0.0,
-};
-
-pub const FORWARD: Vector3 = Vector3 {
-    x: 0.0,
-    y: 0.0,
-    z: -1.0,
-};
-
 #[repr(C, packed)]
 #[derive(Copy, Clone, Debug)]
 pub struct Vector3 {
@@ -72,7 +42,63 @@ impl Vector3 {
     /// ```
     #[inline]
     pub fn new() -> Vector3 {
-        ZERO
+        Vector3 { x: 0.0, y: 0.0, z: 0.0 }
+    }
+
+    /// Creates a vector <1.0, 1.0, 1.0>
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vector3;
+    /// let actual = Vector3::one();
+    /// let expected = Vector3 { x: 1.0, y: 1.0, z: 1.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    #[inline]
+    pub fn one() -> Vector3 {
+        Vector3 { x: 1.0, y: 1.0, z: 1.0 }
+    }
+
+    /// Creates a right vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vector3;
+    /// let actual = Vector3::right();
+    /// let expected = Vector3 { x: 1.0, y: 0.0, z: 0.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    #[inline]
+    pub fn right() -> Vector3 {
+        Vector3 { x: 1.0, y: 0.0, z: 0.0 }
+    }
+
+    /// Creates an up vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vector3;
+    /// let actual = Vector3::up();
+    /// let expected = Vector3 { x: 0.0, y: 1.0, z: 0.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    #[inline]
+    pub fn up() -> Vector3 {
+        Vector3 { x: 0.0, y: 1.0, z: 0.0 }
+    }
+
+    /// Creates a forward vector
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vector3;
+    /// let actual = Vector3::forward();
+    /// let expected = Vector3 { x: 0.0, y: 0.0, z: -1.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    #[inline]
+    pub fn forward() -> Vector3 {
+        Vector3 { x: 0.0, y: 0.0, z: -1.0 }
     }
 
     /// Creates a vector from the provided values

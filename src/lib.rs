@@ -6,6 +6,7 @@ mod vector2;
 mod vector3;
 mod vector4;
 
+pub use common::*;
 pub use matrix2::*;
 pub use matrix3::*;
 pub use matrix4::*;

@@ -8,8 +8,6 @@ use std::fmt;
 use std::fmt::{Display, Formatter};
 
 use std::ops::{
-    Index,
-    IndexMut,
     Neg,
     Add,
     AddAssign,
@@ -19,12 +17,6 @@ use std::ops::{
     MulAssign,
     Div,
     DivAssign,
-};
-
-pub const IDENTITY: Matrix4 = Matrix4 {
-    m: [
-        1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-    ],
 };
 
 #[repr(C, packed)]
@@ -39,13 +31,26 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
-    /// use vex::matrix4::IDENTITY;
     /// let actual = Matrix4::new();
-    /// assert_eq!(actual, IDENTITY);
+    /// assert_eq!(actual, Matrix4 {
+    ///     m: [
+    ///         1.0, 0.0, 0.0, 0.0,
+    ///         0.0, 1.0, 0.0, 0.0,
+    ///         0.0, 0.0, 1.0, 0.0,
+    ///         0.0, 0.0, 0.0, 1.0,
+    ///     ],
+    /// });
     /// ```
     #[inline]
     pub fn new() -> Matrix4 {
-        IDENTITY
+        Matrix4 {
+            m: [
+                1.0, 0.0, 0.0, 0.0,
+                0.0, 1.0, 0.0, 0.0,
+                0.0, 0.0, 1.0, 0.0,
+                0.0, 0.0, 0.0, 1.0,
+            ],
+        }
     }
 
     /// Creates a matrix from the provided values
@@ -161,11 +166,10 @@ impl Matrix4 {
     /// ```
     /// use vex::Matrix4;
     /// use vex::Vector3;
-    /// use vex::vector3::UP;
     ///
     /// let position = Vector3::make(0.0, 1.0, 1.0);
     /// let target = Vector3::new();
-    /// let actual = Matrix4::look_at(position, target, UP);
+    /// let actual = Matrix4::look_at(position, target, Vector3::up());
     /// let expected = [
     ///   1.0, 0.0,         0.0,        0.0, // column 1
     ///   0.0, 0.70710677, -0.70710677, 0.0, // column 2
@@ -1567,7 +1571,7 @@ impl common::TransformPoint<Vector3> for Matrix4 {
     ///
     /// # Examples
     /// ```
-    /// use vex::common::TransformPoint;
+    /// use vex::TransformPoint;
     /// use vex::Matrix4;
     /// use vex::Vector3;
     /// let m = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
@@ -1591,7 +1595,7 @@ impl common::TransformPoint<Vector4> for Matrix4 {
     ///
     /// # Examples
     /// ```
-    /// use vex::common::TransformPoint;
+    /// use vex::TransformPoint;
     /// use vex::Matrix4;
     /// use vex::Vector4;
     /// let m = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);

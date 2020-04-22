@@ -21,20 +21,6 @@ use std::ops::{
     DivAssign,
 };
 
-pub const ZERO: Vector4 = Vector4 {
-    x: 0.0,
-    y: 0.0,
-    z: 0.0,
-    w: 0.0,
-};
-
-pub const ONE: Vector4 = Vector4 {
-    x: 1.0,
-    y: 1.0,
-    z: 1.0,
-    w: 1.0,
-};
-
 #[repr(C, packed)]
 #[derive(Copy, Clone, Debug)]
 pub struct Vector4 {
@@ -56,7 +42,31 @@ impl Vector4 {
     /// ```
     #[inline]
     pub fn new() -> Vector4 {
-        ZERO
+        Vector4 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+            w: 0.0,
+        }
+    }
+
+    /// Creates a vector <0.0, 0.0, 0.0, 0.0>
+    ///
+    /// # Examples
+    /// ```
+    /// use vex::Vector4;
+    /// let actual = Vector4::one();
+    /// let expected = Vector4 { x: 1.0, y: 1.0, z: 1.0, w: 1.0 };
+    /// assert_eq!(actual, expected);
+    /// ```
+    #[inline]
+    pub fn one() -> Vector4 {
+        Vector4 {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0,
+            w: 1.0,
+        }
     }
 
     /// Creates a vector from the provided values
