@@ -31,6 +31,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::new();
     /// assert_eq!(actual, Matrix4 {
     ///     m: [
@@ -58,6 +59,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let expected = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0];
     /// assert_eq!(actual.m, expected);
@@ -308,6 +310,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::scale(1.0, 2.0, 3.0);
     /// let expected = [
     ///     1.0, 0.0, 0.0, 0.0, // column 1
@@ -331,6 +334,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m11(), 1.0);
     /// ```
@@ -344,6 +348,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m21(), 2.0);
     /// ```
@@ -357,6 +362,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m31(), 3.0);
     /// ```
@@ -370,6 +376,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m41(), 4.0);
     /// ```
@@ -383,6 +390,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m12(), 5.0);
     /// ```
@@ -396,6 +404,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m22(), 6.0);
     /// ```
@@ -409,6 +418,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m32(), 7.0);
     /// ```
@@ -422,6 +432,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m42(), 8.0);
     /// ```
@@ -435,6 +446,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m13(), 9.0);
     /// ```
@@ -448,6 +460,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m23(), 10.0);
     /// ```
@@ -461,6 +474,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m33(), 11.0);
     /// ```
@@ -474,6 +488,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m43(), 12.0);
     /// ```
@@ -487,6 +502,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m14(), 13.0);
     /// ```
@@ -500,6 +516,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m24(), 14.0);
     /// ```
@@ -513,6 +530,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m34(), 15.0);
     /// ```
@@ -526,6 +544,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert_eq!(actual.m44(), 16.0);
     /// ```
@@ -539,6 +558,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m11(1.0);
     /// let expected = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -554,6 +574,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m21(1.0);
     /// let expected = [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -569,6 +590,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m31(1.0);
     /// let expected = [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -584,6 +606,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m41(1.0);
     /// let expected = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -599,6 +622,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m12(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -614,6 +638,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m22(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -629,6 +654,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m32(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -644,6 +670,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m42(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -659,6 +686,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m13(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -674,6 +702,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m23(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -689,6 +718,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m33(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -704,6 +734,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m43(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0];
@@ -719,6 +750,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m14(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0];
@@ -734,6 +766,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m24(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0];
@@ -749,6 +782,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m34(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0];
@@ -764,6 +798,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     /// actual.set_m44(1.0);
     /// let expected = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0];
@@ -779,6 +814,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::new();
     /// actual.set(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let expected = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
@@ -827,6 +863,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual.transpose();
     /// let expected = Matrix4::make(1.0, 5.0, 9.0, 13.0, 2.0, 6.0, 10.0, 14.0, 3.0, 7.0, 11.0, 15.0, 4.0, 8.0, 12.0, 16.0);
@@ -862,6 +899,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0).determinant();
     /// assert_eq!(actual, 0.0);
     /// ```
@@ -931,6 +969,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 0.0, 2.0, 2.0, 0.0, 2.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 2.0, 1.0, 4.0);
     /// actual.inverse();
     /// let expected = Matrix4::make(-2.0, 1.0, -8.0, 3.0, -0.5, 0.5, -1.0, 0.5, 1.0, 0.0, 2.0, -1.0, 0.5, -0.5, 2.0, -0.5);
@@ -1074,6 +1113,7 @@ impl Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// assert!(actual.is_valid());
     /// ```
@@ -1097,6 +1137,7 @@ impl Neg for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = -Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let expected = Matrix4::make(-1.0, -2.0, -3.0, -4.0, -5.0, -6.0, -7.0, -8.0, -9.0, -10.0, -11.0, -12.0, -13.0, -14.0, -15.0, -16.0);
     /// assert_eq!(actual, expected);
@@ -1123,6 +1164,7 @@ impl Add<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0) + 1.0;
     /// let expected = Matrix4::make(2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0);
     /// assert_eq!(actual, expected);
@@ -1149,6 +1191,7 @@ impl Add<Matrix4> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let a = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let b = Matrix4::make(16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0);
     /// let actual = a + b;
@@ -1175,6 +1218,7 @@ impl AddAssign<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual += 10.0;
     /// let expected = Matrix4::make(11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0, 26.0);
@@ -1196,6 +1240,7 @@ impl AddAssign<Matrix4> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual += Matrix4::make(16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0);
     /// let expected = Matrix4::make(17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0, 17.0);
@@ -1219,6 +1264,7 @@ impl Sub<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0) - 17.0;
     /// let expected = Matrix4::make(-16.0, -15.0, -14.0, -13.0, -12.0, -11.0, -10.0, -9.0, -8.0, -7.0, -6.0, -5.0, -4.0, -3.0, -2.0, -1.0);
     /// assert_eq!(actual, expected);
@@ -1245,6 +1291,7 @@ impl Sub<Matrix4> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let a = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let b = Matrix4::make(16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0);
     /// let actual = a - b;
@@ -1271,6 +1318,7 @@ impl SubAssign<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual -= 1.0;
     /// let expected = Matrix4::make(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0);
@@ -1292,6 +1340,7 @@ impl SubAssign<Matrix4> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual -= Matrix4::make(0.0, 2.0, 3.0, 4.0, 5.0, 5.0, 7.0, 8.0, 9.0, 10.0, 10.0, 12.0, 13.0, 14.0, 15.0, 15.0);
     /// assert_eq!(actual, Matrix4::new());
@@ -1314,6 +1363,7 @@ impl Mul<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0) * 2.0;
     /// let expected = Matrix4::make(2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 30.0, 32.0);
     /// assert_eq!(actual, expected);
@@ -1340,6 +1390,7 @@ impl Mul<Matrix4> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let a = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let b = Matrix4::make(16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0);
     /// let actual = a * b;
@@ -1433,6 +1484,7 @@ impl MulAssign<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual *= 2.0;
     /// let expected = Matrix4::make(2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 30.0, 32.0);
@@ -1454,6 +1506,7 @@ impl MulAssign<Matrix4> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual *= Matrix4::make(16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0);
     /// let expected = Matrix4::make(
@@ -1479,6 +1532,7 @@ impl Div<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0) / 2.0;
     /// let expected = Matrix4::make(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0);
     /// assert_eq!(actual, expected);
@@ -1503,6 +1557,7 @@ impl DivAssign<f32> for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// let mut actual = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// actual /= 2.0;
     /// let expected = Matrix4::make(0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0);
@@ -1524,6 +1579,7 @@ impl cmp::PartialEq for Matrix4 {
     /// # Examples
     /// ```
     /// use vex::Matrix4;
+    /// 
     /// assert!(Matrix4::new() == Matrix4::new());
     /// ```
     #[inline]
@@ -1566,14 +1622,15 @@ impl Display for Matrix4 {
     }
 }
 
-impl common::TransformPoint<Vector3> for Matrix4 {
+impl common::Matrix<Vector3> for Matrix4 {
     /// Find the resulting vector given a vector and matrix
     ///
     /// # Examples
     /// ```
-    /// use vex::TransformPoint;
+    /// use vex::Matrix;
     /// use vex::Matrix4;
     /// use vex::Vector3;
+    /// 
     /// let m = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let v = Vector3::make(1.0, 2.0, 3.0);
     /// let actual = m.transform_point(&v);
@@ -1590,14 +1647,15 @@ impl common::TransformPoint<Vector3> for Matrix4 {
     }
 }
 
-impl common::TransformPoint<Vector4> for Matrix4 {
+impl common::Matrix<Vector4> for Matrix4 {
     /// Find the resulting vector given a vector and matrix
     ///
     /// # Examples
     /// ```
-    /// use vex::TransformPoint;
+    /// use vex::Matrix;
     /// use vex::Matrix4;
     /// use vex::Vector4;
+    /// 
     /// let m = Matrix4::make(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0);
     /// let v = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let actual = m.transform_point(&v);

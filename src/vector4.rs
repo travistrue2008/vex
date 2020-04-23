@@ -36,6 +36,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::new();
     /// let expected = Vector4 { x: 0.0, y: 0.0, z: 0.0, w: 0.0 };
     /// assert_eq!(actual, expected);
@@ -55,6 +56,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::one();
     /// let expected = Vector4 { x: 1.0, y: 1.0, z: 1.0, w: 1.0 };
     /// assert_eq!(actual, expected);
@@ -74,6 +76,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let expected = Vector4 { x: 1.0, y: 2.0, z: 3.0, w: 4.0 };
     /// assert_eq!(actual, expected);
@@ -88,6 +91,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(1.0, 0.0, 0.0, 0.0);
     /// let b = Vector4::make(0.0, 0.0, 1.0, 0.0);
     /// let actual = Vector4::dot(&a, &b);
@@ -104,6 +108,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(1.0, 4.0, 5.0, 7.0);
     /// let b = Vector4::make(2.0, 3.0, 6.0, 8.0);
     /// let actual = Vector4::min(&a, &b);
@@ -120,6 +125,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(1.0, 4.0, 5.0, 7.0);
     /// let b = Vector4::make(2.0, 3.0, 6.0, 8.0);
     /// let actual = Vector4::max(&a, &b);
@@ -136,6 +142,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(1.0, 3.0, 5.0, 7.0);
     /// let b = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// let mut actual = Vector4::make(0.0, 5.0, 10.0, 20.0);
@@ -156,6 +163,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::new();
     /// actual.set(1.0, 2.0, 3.0, 4.0);
     /// let expected = Vector4::make(1.0, 2.0, 3.0, 4.0);
@@ -174,6 +182,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).mag();
     /// let expected = 5.47722557505;
     /// assert_eq!(actual, expected);
@@ -188,6 +197,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0).mag_sq();
     /// let expected = 30.0;
     /// assert_eq!(actual, expected);
@@ -202,6 +212,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual.norm();
     /// let expected = Vector4::make(0.18257418, 0.36514837, 0.5477225, 0.73029673);
@@ -226,6 +237,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(-1.0, -2.0, -3.0, -4.0);
     /// actual.abs();
     /// let expected = Vector4::make(1.0, 2.0, 3.0, 4.0);
@@ -244,6 +256,7 @@ impl Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert!(actual.is_valid());
     /// ```
@@ -266,6 +279,7 @@ impl From<Vector3> for Vector4 {
     /// ```
     /// use vex::Vector3;
     /// use vex::Vector4;
+    /// 
     /// let input = Vector3::make(1.0, 2.0, 3.0);
     /// let actual = Vector4::from(input);
     /// let expected = Vector4 { x: 1.0, y: 2.0, z: 3.0, w: 0.0 };
@@ -290,6 +304,7 @@ impl Index<u32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut v = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(v[0], 1.0);
     /// assert_eq!(v[1], 2.0);
@@ -316,6 +331,7 @@ impl IndexMut<u32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut v = Vector4::new();
     /// v[0] = 4.0;
     /// v[1] = 5.0;
@@ -348,6 +364,7 @@ impl Neg for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = -Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let expected = Vector4::make(-1.0, -2.0, -3.0, -4.0);
     /// assert_eq!(actual, expected);
@@ -366,6 +383,7 @@ impl Add<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) + 1.0;
     /// let expected = Vector4::make(2.0, 3.0, 4.0, 5.0);
     /// assert_eq!(actual, expected);
@@ -384,6 +402,7 @@ impl Add<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let b = Vector4::make(5.0, 6.0, 7.0, 8.0);
     /// let actual = a + b;
@@ -407,6 +426,7 @@ impl AddAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual += 10.0;
     /// let expected = Vector4::make(11.0, 12.0, 13.0, 14.0);
@@ -427,6 +447,7 @@ impl AddAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual += Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let expected = Vector4::make(2.0, 4.0, 6.0, 8.0);
@@ -449,6 +470,7 @@ impl Sub<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) - 10.0;
     /// let expected = Vector4::make(-9.0, -8.0, -7.0, -6.0);
     /// assert_eq!(actual, expected);
@@ -467,6 +489,7 @@ impl Sub<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let b = Vector4::make(5.0, 4.0, 3.0, 2.0);
     /// let actual = a - b;
@@ -490,6 +513,7 @@ impl SubAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual -= 1.0;
     /// let expected = Vector4::make(0.0, 1.0, 2.0, 3.0);
@@ -510,6 +534,7 @@ impl SubAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual -= Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// assert_eq!(actual, Vector4::new());
@@ -531,6 +556,7 @@ impl Mul<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) * 2.0;
     /// let expected = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// assert_eq!(actual, expected);
@@ -549,6 +575,7 @@ impl Mul<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// let b = Vector4::make(5.0, 6.0, 7.0, 8.0);
     /// let actual = a * b;
@@ -572,6 +599,7 @@ impl MulAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual *= 2.0;
     /// let expected = Vector4::make(2.0, 4.0, 6.0, 8.0);
@@ -592,6 +620,7 @@ impl MulAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual *= Vector4::make(2.0, 3.0, 6.0, 8.0);
     /// let expected = Vector4::make(2.0, 6.0, 18.0, 32.0);
@@ -614,6 +643,7 @@ impl Div<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let actual = Vector4::make(1.0, 2.0, 3.0, 4.0) / 2.0;
     /// let expected = Vector4::make(0.5, 1.0, 1.5, 2.0);
     /// assert_eq!(actual, expected);
@@ -632,6 +662,7 @@ impl Div<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let a = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// let b = Vector4::make(1.0, 4.0, 12.0, 32.0);
     /// let actual = a / b;
@@ -655,6 +686,7 @@ impl DivAssign<f32> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(1.0, 2.0, 3.0, 4.0);
     /// actual /= 2.0;
     /// let expected = Vector4::make(0.5, 1.0, 1.5, 2.0);
@@ -675,6 +707,7 @@ impl DivAssign<Vector4> for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// let mut actual = Vector4::make(2.0, 4.0, 6.0, 8.0);
     /// actual /= Vector4::make(1.0, 4.0, 12.0, 32.0);
     /// let expected = Vector4::make(2.0, 1.0, 0.5, 0.25);
@@ -695,6 +728,7 @@ impl cmp::PartialEq for Vector4 {
     /// # Examples
     /// ```
     /// use vex::Vector4;
+    /// 
     /// assert!(Vector4::new() == Vector4::new());
     /// ```
     #[inline]

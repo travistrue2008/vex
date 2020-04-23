@@ -72,6 +72,6 @@ pub fn sign(x: f32) -> f32 {
     }
 }
 
-pub trait TransformPoint<T> {
+pub trait Matrix<T> {
     fn transform_point(&self, point: &T) -> T;
 }
